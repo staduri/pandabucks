@@ -39,7 +39,7 @@ if(isset($_POST['submit-form'])) {
 
         //log them in
         $userTools->login($username, $password);
-
+        echo "<script type='text/javascript'>alert('successfully registered');</script>";
         //redirect them somewhere
 
     }

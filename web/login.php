@@ -14,6 +14,7 @@ if(isset($_POST['submit-login'])) {
     $userTools = new UserTools();
     if($userTools->login($username, $password)){
         //successful login, redirect them somewhere
+        echo "<script type='text/javascript'>alert('login successful');</script>";
     } else{
         $error = "Oops! Something is wrong. Try again?";
     }
