@@ -1,7 +1,7 @@
 <?php
 //register.php
 
-require_once 'includes/UserTools.php';
+require_once '../src/UserTools.php';
 
 //initialize php variables used in the form
 $username = "";
