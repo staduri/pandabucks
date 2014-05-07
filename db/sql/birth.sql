@@ -29,8 +29,8 @@ CREATE TABLE results (
 
 -- user betting
 CREATE TABLE users_betting (
-    user_id PRIMARY KEY REFERENCES users(user_id),
-    game_id PRIMARY KEY REFERENCES fixtures(game_id),
+    user_id BIGINT PRIMARY KEY REFERENCES users(user_id),
+    game_id BIGINT PRIMARY KEY REFERENCES fixtures(game_id),
     prediction TEXT NOT NULL
 ) WITHOUT OIDS;
 
