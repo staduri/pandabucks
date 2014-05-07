@@ -28,9 +28,12 @@ CREATE TABLE results (
 ) WITHOUT OIDS;
 
 -- user betting
+CREATE SEQUENCE id_seq;
 CREATE TABLE users_betting (
-    user_id BIGINT PRIMARY KEY REFERENCES users(user_id),
-    game_id BIGINT PRIMARY KEY REFERENCES fixtures(game_id),
+    id BIGINT PRIMARY KEY
+      DEFAULT nextval('id_seq'),
+    user_id BIGINT REFERENCES users(user_id),
+    game_id BIGINT REFERENCES fixtures(game_id),
     prediction TEXT NOT NULL
 ) WITHOUT OIDS;
 
