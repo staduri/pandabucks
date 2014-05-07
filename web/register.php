@@ -1,6 +1,8 @@
 <?php
 //register.php
 
+require_once 'includes/UserTools.php';
+
 //initialize php variables used in the form
 $username = "";
 $password = "";
@@ -33,13 +35,13 @@ if(isset($_POST['submit-form'])) {
             "join_date" => $email
         );
 
-        $this->id = $db->insert($data, 'users');
-        $this->joinDate = time();
+        $this->id = $userTools->createUser($data, 'users');
 
         //log them in
         $userTools->login($username, $password);
 
         //redirect them somewhere
+
     }
 }
 //If the form wasn't submitted, or didn't validate

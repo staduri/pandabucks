@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/DB.php';
+require_once 'includes/UserTools.php';
 
 $error = "";
 $username = "";
