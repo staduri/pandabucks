@@ -1,0 +1,49 @@
+game_id,home_team_name,away_team_name,home_team_id,away_team_id,start_time,time_zone,start_time_gmt_unix,arena,group
+1,Brazil,Croatia,6,12,2014-06-12 17:00:00,UTC-3,1402581600,"Arena de São Paulo, São Paulo",a
+2,Mexico,Cameroon,23,7,2014-06-13 13:00:00,UTC-3,1402653600,"Estádio das Dunas, Natal",a
+17,Brazil,Mexico,6,23,2014-06-17 16:00:00,UTC-3,1403010000,"Estádio Castelão, Fortaleza",a
+18,Cameroon,Croatia,7,12,2014-06-18 18:00:00,UTC-4,1403100000,"Arena Amazônia, Manaus",a
+33,Cameroon,Brazil,7,6,2014-06-23 17:00:00,UTC-3,1403532000,Brasília,a
+34,Croatia,Mexico,12,23,2014-06-23 17:00:00,UTC-3,1403532000,Recife,a
+3,Spain,Netherlands,29,24,2014-06-13 16:00:00,UTC-3,1402664400,"Arena Fonte Nova, Salvador",b
+4,Chile,Australia,8,3,2014-06-13 18:00:00,UTC-4,1402668000,"Arena Pantanal, Cuiabá",b
+19,Spain,Chile,29,8,2014-06-18 16:00:00,UTC-3,1403096400,"Estádio do Maracanã, Rio de Janeiro",b
+20,Australia,Netherlands,3,24,2014-06-18 13:00:00,UTC-3,1403085600,"Estádio Beira-Rio, Porto Alegre",b
+35,Australia,Spain,3,29,2014-06-23 13:00:00,UTC-3,1403517600,Curitiba,b
+36,Netherlands,Chile,24,8,2014-06-23 13:00:00,UTC-3,1403517600,São Paulo,b
+5,Colombia,Greece,9,18,2014-06-14 13:00:00,UTC-3,1402740000,"Estádio Mineirão, Belo Horizonte",c
+6,Côte d'Ivoire,Japan,11,22,2014-06-14 22:00:00,UTC-3,1402772400,"Arena Pernambuco, Recife",c
+21,Colombia,Côte d'Ivoire,9,11,2014-06-19 13:00:00,UTC-3,1403172000,"Estádio Nacional Mané Garrincha, Brasília",c
+22,Japan,Greece,22,18,2014-06-19 19:00:00,UTC-3,1403193600,"Estádio das Dunas, Natal",c
+37,Japan,Colombia,22,9,2014-06-24 16:00:00,UTC-4,1403611200,Cuiabá,c
+38,Côte d'Ivoire,Greece,11,18,2014-06-24 17:00:00,UTC-3,1403618400,Fortaleza,c
+7,Uruguay,Coasta Rica,32,8,2014-06-14 16:00:00,UTC-3,1402750800,"Estádio Castelão, Fortaleza",d
+8,England,Italy,14,21,2014-06-14 18:00:00,UTC-4,1402754400,"Arena Amazônia, Manaus",d
+23,Uruguay,England,32,14,2014-06-19 16:00:00,UTC-3,1403182800,"Arena de São Paulo, São Paulo",d
+24,Italy,Costa Rica,21,10,2014-06-20 13:00:00,UTC-3,1403258400,"Arena Pernambuco, Recife",d
+39,Italy,Uruguay,21,32,2014-06-24 13:00:00,UTC-3,1403604000,Natal,d
+40,Costa Rica,England,10,14,2014-06-24 13:00:00,UTC-3,1403604000,Belo Horizonte,d
+9,Switzerland,Ecuador,30,12,2014-06-15 13:00:00,UTC-3,1402826400,"Estádio Nacional Mané Garrincha, Brasília",e
+10,France,Honduras,15,19,2014-06-15 16:00:00,UTC-3,1402837200,"Estádio Beira-Rio, Porto Alegre",e
+25,Switzerland,France,30,15,2014-06-20 16:00:00,UTC-3,1403269200,"Arena Fonte Nova, Salvador",e
+26,Honduras,Ecuador,19,12,2014-06-20 19:00:00,UTC-3,1403280000,"Arena da Baixada, Curitiba",e
+41,Honduras,Switzerland,19,30,2014-06-25 16:00:00,UTC-4,1403697600,Manaus,e
+42,Ecudor,France,13,15,2014-06-25 17:00:00,UTC-3,1403704800,Rio de Janeiro,e
+11,Argentina,Bosnia-Herzegovina,2,5,2014-06-15 19:00:00,UTC-3,1402848000,"Estádio do Maracanã, Rio de Janeiro",f
+12,Iran,Nigeria,20,25,2014-06-16 16:00:00,UTC-3,1402923600,"Arena da Baixada, Curitiba",f
+27,Argentina,Iran,2,20,2014-06-21 13:00:00,UTC-3,1403344800,"Estádio Mineirão, Belo Horizonte",f
+28,Nigeria,Bosnia-Herzegovina,25,5,2014-06-21 18:00:00,UTC-4,1403359200,"Arena Pantanal, Cuiabá",f
+43,Nigeria,Argentina,25,2,2014-06-25 13:00:00,UTC-3,1403690400,Porto Alegre,f
+44,Bosnia-Herzegovina,Iran,5,20,2014-06-25 13:00:00,UTC-3,1403690400,Salvador,f
+13,Germany,Portugal,16,26,2014-06-16 13:00:00,UTC-3,1402912800,"Arena Fonte Nova, Salvador",g
+14,Ghana,United States,17,31,2014-06-16 19:00:00,UTC-3,1402934400,"Estádio das Dunas, Natal",g
+29,Germany,Ghana,16,17,2014-06-21 16:00:00,UTC-3,1403355600,Fortaleza,g
+30,United States,Portugal,31,26,2014-06-22 18:00:00,UTC-4,1403445600,Manaus,g
+45,United States,Germany,31,16,2014-06-26 13:00:00,UTC-3,1403776800,Recife,g
+46,Portugal,Ghana,26,17,2014-06-26 13:00:00,UTC-3,1403776800,Brasília,g
+15,Belgium,Algeria,4,1,2014-06-17 13:00:00,UTC-3,1402999200,"Estádio Mineirão, Belo Horizonte",h
+16,Russia,South Korea,27,28,2014-06-17 18:00:00,UTC-4,1403013600,"Arena Pantanal, Cuiabá",h
+31,Belgium,Russia,4,27,2014-06-22 13:00:00,UTC-3,1403431200,Rio de Janeiro,h
+32,South Korea,Algeria,28,1,2014-06-22 16:00:00,UTC-3,1403442000,Porto Alegre,h
+47,South Korea,Belgium,28,4,2014-06-26 17:00:00,UTC-3,1403791200,São Paulo,h
+48,Algeria,Russia,1,27,2014-06-26 17:00:00,UTC-3,1403791200,Curitiba,h
