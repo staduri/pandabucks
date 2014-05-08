@@ -32,13 +32,14 @@ class UserTools {
     }
 
     public function checkSession() {
+        session_start();
 
 
-       /* if(isset($_SESSION) && $_SESSION["logged_in"] == 1) {
-            return $_SESSION["user"]->user_id;
+       if(isset($_SESSION) && $_SESSION["logged_in"] == 1) {
+            return unserialize($_SESSION["user"]);
         } else {
             header("Location: login.php");
-        } */
+        }
     }
 
     //Log the user out. Destroy the session variables.
