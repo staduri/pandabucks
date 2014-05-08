@@ -1,4 +1,21 @@
 <!DOCTYPE html>
+<?php
+
+require_once('../include/UserTools.php');
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+$userTools = new UserTools();
+
+$flags = $userTools->getAllFlags();
+$game = $userTools->getAGame($_GET["game"]);
+
+if(is_null($game)) {
+    die("error. could not retrieve game.");
+}
+
+?>
 <html>
 <head>
     <?php require_once('../include/header.php') ?>
@@ -17,14 +34,12 @@
             <fieldset data-role="controlgroup" data-type="horizontal" >
                 <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="on" checked="checked">
                 <label for="radio-choice-h-2a">
-                    <img width="100" height="66" src="https://dl.dropboxusercontent.com/sh/uzii4bdixy0gvqy/28QhjxboVH/200px-Flag_of_Uruguay.svg.png?token_hash=AAEM1ThQOdHafAvcUmAs620V7MXebXOrgH7XPUzC5U
-A1Sw" />
-                    <h3>Team ONE</h3></label>
+                    <img width="100" height="66" src="<?php echo $flags[$game["team1_id"]]; ?>" />
+                    <h3><?php echo $game["team1"]; ?></h3></label>
                 <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="off">
                 <label for="radio-choice-h-2b">
-                    <img width="100" height="66" src="https://dl.dropboxusercontent.com/sh/uzii4bdixy0gvqy/JIN-22f5we/200px-Flag_of_the_Netherlands.svg.png?token_hash=AAEM1ThQOdHafAvcUmAs620V7MXebXOrgH
-7XPUzC5UA1Sw" />
-                    <h3>Team TWO</h3></label>
+                    <img width="100" height="66" src="<?php echo $flags[$game["team2_id"]]; ?>" />
+                    <h3><?php echo $game["team2"]; ?></h3></label>
                 <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="other">
                 <label for="radio-choice-h-2c">
                     <h3>DRAW</h3></label>
