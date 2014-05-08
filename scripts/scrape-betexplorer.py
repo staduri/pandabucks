@@ -14,7 +14,7 @@ for row in table.find_all('tr'):
         # group (not used yet)
         group = row.find(class_='first-cell').text
     else:
-        teams = row.td.a.text.replace(' ', '').split('-')
+        teams = row.td.a.text.split(' - ')
         scores = row.find(class_='result').text.split(':')
         odds = [tag['data-odd'] for tag in row.find_all(class_='odds')]
         writer.writerow(teams + scores + odds)
