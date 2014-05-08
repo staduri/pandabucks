@@ -109,8 +109,6 @@ if(isset($_POST['submit-form'])) {
                         </div>
                     </div><!-- /grid-a -->
 
-
-
                     <input type="submit" value="Register" name="submit-form" />
                 </form>
             </div>
