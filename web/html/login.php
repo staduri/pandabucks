@@ -79,9 +79,6 @@ if(isset($_POST['submit-form'])) {
         ?>
 
         <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
-            <div>
-                <img src="../img/paul.talktopus.png" width="100%">
-            </div>
             <div data-role="navbar" style="padding-top: 15px">
                 <ul>
                     <li><a href="#login" data-ajax="false">Sign In</a></li>
@@ -99,6 +96,20 @@ if(isset($_POST['submit-form'])) {
                 <form action="login.php" method="post">
                     Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
                     Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
+
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <img width="200px" src="img/paylocity-holding-corp-logo.png">
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="checkbox" id="terms" checked/>
+                            <label for="terms">Please deduct my losses from Paylocity</label>
+                        </div>
+                    </div><!-- /grid-a -->
+
+
+
                     <input type="submit" value="Register" name="submit-form" />
                 </form>
             </div>
