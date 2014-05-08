@@ -28,7 +28,7 @@ $games = $userTools->getAllGames();
             </div>
             <div class="ui-block-a">
                 <div style="text-align: center">
-                    <h2>Friday, June 13th</h2>
+                    <h2><?php echo date('Y-m-d H:i:s'); ?></h2>
                     <h3>Make your picks</h3>
                 </div>
             </div>
