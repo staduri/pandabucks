@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 
 require_once('../include/UserTools.php');
@@ -8,10 +7,13 @@ ini_set('display_errors', '1');
 
 $userTools = new UserTools();
 
+$userTools->checkSession();
+
 $flags = $userTools->getAllFlags();
 $games = $userTools->getAllGames();
 
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <?php require_once('../include/header.php') ?>
