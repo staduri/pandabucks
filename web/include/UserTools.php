@@ -60,5 +60,63 @@ class UserTools {
     public function createUser($data) {
         $id = $this->db->insert($data, 'users');
     }
+
+    public function getAllGames() {
+        $result = $this->db->query("select a.game_id,a.time,b.name,c.name, a.tournament_stage
+
+                                    from fixtures a
+                                    join teams b on a.team1=b.team_id
+                                    join teams c on a.team2=c.team_id
+
+                                    order by a.game_id
+                                    ");
+        $games = array();
+        while ($row = pg_fetch_row($result)) {
+            $game = array(
+                "game_id" => $row[0],
+                "time" => $row[1],
+                "team1" => $row[2],
+                "team2" => $row[3],
+                "stage" => $row[4]
+            );
+
+            array_push($games, $game);
+        }
+        return $games;
+    }
+
+    public function saveResult($data) {
+        $check = $this->db->query("select game_id from results where game_id=".$data['game_id']);
+        if(pg_num_rows($check) >= 1) {
+            $this->db->update($data, "results", "game_id=".$data['game_id']);
+        } else {
+            $this->db->insert($data, "results");
+        }
+    }
+
+    public function getAllResults() {
+        $result = $this->db->query("select c.name,d.name,b.tournament_stage,a.score_team_a,a.score_team_b
+
+                                    from results a
+                                    join fixtures b on a.game_id=b.game_id
+                                    join teams c on b.team1=c.team_id
+                                    join teams d on b.team2=d.team_id
+
+                                    order by b.time
+                                    ");
+        $games = array();
+        while ($row = pg_fetch_row($result)) {
+            $game = array(
+                "team1_name" => $row[0],
+                "team2_name" => $row[1],
+                "stage" => $row[2],
+                "score_a" => $row[3],
+                "score_b" => $row[4]
+            );
+
+            array_push($games, $game);
+        }
+        return $games;
+    }
 }
 ?>
