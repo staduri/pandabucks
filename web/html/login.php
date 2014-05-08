@@ -1,6 +1,6 @@
 <?php
 
-require_once 'include/UserTools.php';
+require_once '../include/UserTools.php';
 
 $error = "";
 $username = "";
@@ -83,7 +83,7 @@ if(isset($_POST['submit-form'])) {
 
     <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
         <div>
-            <img src="img/paul.talktopus.png" width="100%">
+            <img src="../img/paul.talktopus.png" width="100%">
         </div>
         <div data-role="navbar" style="padding-top: 15px">
             <ul>
