@@ -11,7 +11,7 @@
         text-align: left;
     }
     .ui-block-c {
-        text-align: right;
+        text-align: center;
     }
 
     label {
