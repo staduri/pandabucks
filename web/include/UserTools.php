@@ -190,12 +190,12 @@ class UserTools {
                                     a.game_id,
                                     case
                                     when score_team_a > score_team_b then '1'
-                                    when score_team_b < score_team_b then '2'
+                                    when score_team_b > score_team_a then '2'
                                     when score_team_a = score_team_b then 'X'
                                     end final_result,
                                     case
                                     when score_team_a > score_team_b then team1_points
-                                    when score_team_b < score_team_b then team2_points
+                                    when score_team_b > score_team_a then team2_points
                                     when score_team_a = score_team_b then draw_points
                                     end points
                                     from results a

@@ -56,7 +56,7 @@
                         echo '<div class="ui-grid-b">';
                         echo '<div class="ui-block-a">' . $rank_num . '</div>';
                         echo '<div class="ui-block-b">' . $row['user_id'] . '</div>';
-                        echo '<div class="ui-block-c">' . $row['points'] . '</div>';
+                        echo '<div class="ui-block-c">' . number_format($row['points']) . '</div>';
                         echo '</div>';
                     echo '</li>';
             
