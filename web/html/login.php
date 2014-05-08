@@ -1,3 +1,11 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+</head>
+<body>
 <?php
 
 require_once '../include/UserTools.php';
@@ -14,7 +22,8 @@ if(isset($_POST['submit-login'])) {
     $userTools = new UserTools();
     if($userTools->login($username, $password)){
         //successful login, redirect them somewhere
-        header("Location: games.php");
+        //header("Location: http://localhost:8000/games.php");
+        js_redirect("index.php");
     } else{
         $error = "Oops! Something is wrong. Try again?";
     }
@@ -59,25 +68,22 @@ if(isset($_POST['submit-form'])) {
         //log them in
         $userTools->login($username, $password);
         //redirect them somewhere
-        header("Location: games.php");
+        //header("Location: http://localhost:8000/games.php");
+        js_redirect("index.php");
 
     }
 }
-?>
-
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no">
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    </head>
-    <body>
-        <?php
             if($error != "") {
                 echo $error."<br/>";
             }
-        ?>
+
+function js_redirect($url) {
+    echo "<script language=\"JavaScript\">\n";
+    echo "window.location = \"" . $url . "\";\n";
+    echo "</script>\n";
+    return true;
+}
+?>
 
         <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
             <div data-role="navbar" style="padding-top: 15px">
@@ -97,7 +103,6 @@ if(isset($_POST['submit-form'])) {
                 <form action="login.php" method="post">
                     Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
                     Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-
 
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
