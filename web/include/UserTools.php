@@ -60,5 +60,29 @@ class UserTools {
     public function createUser($data) {
         $id = $this->db->insert($data, 'users');
     }
+
+    public function getAllGames() {
+        $result = $this->db->query("select a.game_id,a.time,b.name,c.name, a.tournament_stage
+
+                                    from fixtures a
+                                    join teams b on a.team1=b.team_id
+                                    join teams c on a.team2=c.team_id
+
+                                    order by a.game_id
+                                    ");
+        $games = array();
+        while ($row = pg_fetch_row($result)) {
+            $game = array(
+                "game_id" => $row[0],
+                "time" => $row[1],
+                "team1" => $row[2],
+                "team2" => $row[3],
+                "stage" => $row[4]
+            );
+
+            array_push($games, $game);
+        }
+        return $games;
+    }
 }
 ?>
