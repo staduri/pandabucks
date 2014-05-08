@@ -42,49 +42,6 @@
                     <div class="ui-block-c">Points</div>
                 </div>
             </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">1</div>
-                    <div class="ui-block-b">Joe Person</div>
-                    <div class="ui-block-c">70</div>
-                </div>
-            </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">1</div>
-                    <div class="ui-block-b">Joe Person</div>
-                    <div class="ui-block-c">70</div>
-                </div>
-            </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">1</div>
-                    <div class="ui-block-b">Joe Person</div>
-                    <div class="ui-block-c">70</div>
-                </div>
-            </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">1</div>
-                    <div class="ui-block-b">Joe Person</div>
-                    <div class="ui-block-c">70</div>
-                </div>
-            </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">1</div>
-                    <div class="ui-block-b">Joe Person</div>
-                    <div class="ui-block-c">70</div>
-                </div>
-            </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">1</div>
-                    <div class="ui-block-b">Joe Person</div>
-                    <div class="ui-block-c">70</div>
-                </div>
-            </li>
-
     <?php
         $rank_num = 1;
         foreach ($leaderboard as $row) {
@@ -100,7 +57,6 @@
             $rank_num += 1;
     }
     ?>
-            </li>
         </ul>
     </div>
 </div>
