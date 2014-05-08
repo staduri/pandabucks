@@ -7,49 +7,9 @@ require_once 'include/UserTools.php';
 $username = "";
 $password = "";
 $email = "";
-$error = "";
 
-//check to see that the form has been submitted
-if(isset($_POST['submit-form'])) {
 
-    //retrieve the $_POST variables
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
 
-    //initialize variables for form validation
-    $success = true;
-    $userTools = new UserTools();
-
-    //check to see if user name already exists
-    if($userTools->checkUsernameExists($username)) {
-        $error .= "That username is already taken.<br/> \n\r";
-        $success = false;
-    }
-
-    //check to see if user is allowed
-    if($userTools->checkUserNotAllowedAccess($username)) {
-        $error .= "This user isn't allowed access.<br/> \n\r";
-        $success = false;
-    }
-
-    if($success) {
-        //if the user is being registered for the first time.
-        $data = array(
-            "email" => $username,
-            "password" => md5($password),
-            "paid" => "false"
-        );
-
-        $id = $userTools->createUser($data, 'users');
-
-        //log them in
-        $userTools->login($username, $password);
-        //redirect them somewhere
-        header("Location: games.php");
-
-    }
-}
 //If the form wasn't submitted, or didn't validate
 //then we show the registration form again
 ?>
@@ -60,12 +20,5 @@ if(isset($_POST['submit-form'])) {
 </head>
 <body>
 <?php echo ($error != "") ? $error : ""; ?>
-<form action="register.php" method="post">
-
-    Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
-    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-    <input type="submit" value="Register" name="submit-form" />
-
-</form>
 </body>
 </html>
