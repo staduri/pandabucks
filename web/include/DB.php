@@ -1,25 +1,3 @@
-<!---->
-<!--Example Usage: In another file-->
-<!---->
-<?php
-//require_once('classes/DB.class.php');
-//
-//class SomeClass {
-//    private $db;
-//
-//    public function __construct() {
-//        $this->db = new DB();
-//    }
-//
-//    public function getDestinationUrl($campaign_name) {
-//        $sql = "select destination_url from campaign_index where campaign_name='$campaign_name'";
-//        $result = pg_fetch_result($this->db->query($sql),0);
-//        return $result;
-//    }
-//}
-//
-?>
-
 <?php
 //DB.class.php
 
@@ -69,7 +47,7 @@ class DB {
     public function update($data, $table, $where) {
         foreach ($data as $column => $value) {
             $sql = "UPDATE $table SET $column = $value WHERE $where";
-            pg_query($sql) or die(pg_error());
+            pg_query($sql) or die("Some lame DB error");
         }
         return true;
     }
@@ -82,12 +60,11 @@ class DB {
             $columns .= ($columns == "") ? "" : ", ";
             $columns .= $column;
             $values .= ($values == "") ? "" : ", ";
-            $values .= $value;
+            $values .= "'".$value."'";
         }
 
         $sql = "insert into $table ($columns) values ($values)";
-
-        pg_query($sql) or die(pg_error());
+        pg_query($sql) or die("Some lame DB error");
 
         //return the ID of the user in the database.
         return 1; //pg_insert_id();

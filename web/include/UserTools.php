@@ -5,13 +5,19 @@ require_once 'DB.php';
 
 class UserTools {
 
+    private $db;
+
+    public function __construct() {
+        $this->db = new DB();
+    }
+
     //Log the user in. First checks to see if the
     //username and password match a row in the database.
     //If it is successful, set the session variables
     //and store the user object within.
     public function login($username, $password) {
         $hashedPassword = md5($password);
-        $result = pg_query("SELECT * FROM users WHERE username = '$username' AND password = '$hashedPassword'");
+        $result = $this->db->query("SELECT * FROM users WHERE email = '$username' AND password = '$hashedPassword'");
 
         if(pg_num_rows($result) == 1) {
             $_SESSION["user"] = serialize(pg_fetch_assoc($result));
@@ -34,7 +40,7 @@ class UserTools {
     //Check to see if a username exists.
     //This is called during registration to make sure all user names are unique.
     public function checkUsernameExists($username) {
-        $result = pg_query("select user_id from users where username='$username'");
+        $result = $this->db->query("select user_id from users where email='$username'");
         if(pg_num_rows($result) == 0) {
             return false;
         } else {
@@ -42,8 +48,17 @@ class UserTools {
         }
     }
 
+    public function checkUserNotAllowedAccess($username) {
+        $result = $this->db->query("select email from allowed_users where email='$username'");
+        if(pg_num_rows($result) >= 1) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function createUser($data) {
-        $this->id = new DB().insert($data, 'users');
+        $id = $this->db->insert($data, 'users');
     }
 }
 ?>
