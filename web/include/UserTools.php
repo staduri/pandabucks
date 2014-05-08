@@ -100,6 +100,32 @@ class UserTools {
         return $games;
     }
 
+    public function getAGame($gid) {
+        $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage
+
+                                    from fixtures a
+                                    join teams b on a.team1=b.team_id
+                                    join teams c on a.team2=c.team_id
+
+                                    where a.game_id='".$gid."';");
+
+        if ($row = pg_fetch_row($result)) {
+            $game = array(
+                "game_id" => $row[0],
+                "time" => $row[1],
+                "team1" => $row[2],
+                "team1_id" => $row[3],
+                "team2" => $row[4],
+                "team2_id" => $row[5],
+                "stage" => $row[6]
+            );
+
+            return $game;
+        }
+        return NULL;
+
+    }
+
     public function saveResult($data) {
         $check = $this->db->query("select game_id from results where game_id=".$data['game_id']);
         if(pg_num_rows($check) >= 1) {
