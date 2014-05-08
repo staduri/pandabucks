@@ -34,7 +34,7 @@ $games = $userTools->getAllGames();
                 <ul data-role="listview" > <!-- data-inset="true" -->
                     <?php foreach ($games as $game) { ?>
                     <li>
-                        <a href="">
+                        <a href="pick.php?game=<?php echo $game["game_id"]; ?>">
                         <div class="ui-grid-c">
                             <div class="ui-block-a">
 
