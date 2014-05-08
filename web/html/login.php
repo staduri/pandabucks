@@ -70,42 +70,38 @@ if(isset($_POST['submit-form'])) {
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-
     </head>
     <body>
+        <?php
+            if($error != "") {
+                echo $error."<br/>";
+            }
+        ?>
 
-
-    <?php
-        if($error != "") {
-            echo $error."<br/>";
-        }
-    ?>
-
-    <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
-        <div>
-            <img src="../img/paul.talktopus.png" width="100%">
+        <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
+            <div>
+                <img src="../img/paul.talktopus.png" width="100%">
+            </div>
+            <div data-role="navbar" style="padding-top: 15px">
+                <ul>
+                    <li><a href="#login" data-ajax="false">Sign In</a></li>
+                    <li><a href="#register" data-ajax="false">Register</a></li>
+                </ul>
+            </div>
+            <div id="login" class="ui-body-d ui-content">
+                <form action="login.php" method="post">
+                    Username: <input type="email" name="username" value="<?php echo $username; ?>" /><br/>
+                    Password: <input type="password" name="password" value="" /><br/>
+                    <input type="submit" value="Login" name="submit-login" />
+                </form>
+            </div>
+            <div id="register" class="ui-body-d ui-content">
+                <form action="login.php" method="post">
+                    Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
+                    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
+                    <input type="submit" value="Register" name="submit-form" />
+                </form>
+            </div>
         </div>
-        <div data-role="navbar" style="padding-top: 15px">
-            <ul>
-                <li><a href="#login" data-ajax="false">Sign In</a></li>
-                <li><a href="#register" data-ajax="false">Register</a></li>
-            </ul>
-        </div>
-        <div id="login" class="ui-body-d ui-content">
-            <form action="login.php" method="post">
-                Username: <input type="email" name="username" value="<?php echo $username; ?>" /><br/>
-                Password: <input type="password" name="password" value="" /><br/>
-                <input type="submit" value="Login" name="submit-login" />
-            </form>
-        </div>
-        <div id="register" class="ui-body-d ui-content">
-            <form action="login.php" method="post">
-                Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
-                Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-                <input type="submit" value="Register" name="submit-form" />
-            </form>
-        </div>
-    </div>
-
     </body>
 </html>
