@@ -172,5 +172,44 @@ class UserTools {
         }
         return $games;
     }
+
+    public function getLeaderboard() {
+        $result = $this->db->query("select
+                                    a.nickname,
+                                    sum(c.points) points
+                                    from users a
+                                    join users_betting b on a.user_id=b.user_id
+                                    join
+                                    (
+                                    select
+                                    a.game_id,
+                                    case
+                                    when score_team_a > score_team_b then '1'
+                                    when score_team_b < score_team_b then '2'
+                                    when score_team_a = score_team_b then 'X'
+                                    end final_result,
+                                    case
+                                    when score_team_a > score_team_b then team1_points
+                                    when score_team_b < score_team_b then team2_points
+                                    when score_team_a = score_team_b then draw_points
+                                    end points
+                                    from results a
+                                    join odds b on a.game_id=b.game_id
+                                    ) c
+                                    on b.game_id=c.game_id
+                                    and b.prediction=c.final_result
+                                    group by a.user_id
+                                    order by points desc;");
+        $leaders = array();
+        while ($row = pg_fetch_row($result)) {
+            $leader = array(
+                "user_id" => $row[0],
+                "points" => $row[1]
+            );
+
+            array_push($leaders, $leader);
+        }
+        return $leaders;
+    }
 }
 ?>
