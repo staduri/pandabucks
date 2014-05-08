@@ -16,6 +16,8 @@ class UserTools {
     //If it is successful, set the session variables
     //and store the user object within.
     public function login($username, $password) {
+        session_start();
+
         $hashedPassword = md5($password);
         $result = $this->db->query("SELECT * FROM users WHERE email = '$username' AND password = '$hashedPassword'");
 
@@ -27,6 +29,16 @@ class UserTools {
         } else {
             return false;
         }
+    }
+
+    public function checkSession() {
+
+
+       /* if(isset($_SESSION) && $_SESSION["logged_in"] == 1) {
+            return $_SESSION["user"]->user_id;
+        } else {
+            header("Location: login.php");
+        } */
     }
 
     //Log the user out. Destroy the session variables.
