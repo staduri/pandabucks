@@ -1,7 +1,7 @@
 <?php
 //register.php
 
-require_once '../src/UserTools.php';
+require_once 'include/UserTools.php';
 
 //initialize php variables used in the form
 $username = "";
@@ -27,20 +27,26 @@ if(isset($_POST['submit-form'])) {
         $success = false;
     }
 
+    //check to see if user is allowed
+    if($userTools->checkUserNotAllowedAccess($username)) {
+        $error .= "This user isn't allowed access.<br/> \n\r";
+        $success = false;
+    }
+
     if($success) {
         //if the user is being registered for the first time.
         $data = array(
-            "username" => $username,
+            "email" => $username,
             "password" => md5($password),
-            "join_date" => $email
+            "paid" => "false"
         );
 
-        $this->id = $userTools->createUser($data, 'users');
+        $id = $userTools->createUser($data, 'users');
 
         //log them in
         $userTools->login($username, $password);
-        echo "<script type='text/javascript'>alert('successfully registered');</script>";
         //redirect them somewhere
+        header("Location: games.php");
 
     }
 }
@@ -56,10 +62,8 @@ if(isset($_POST['submit-form'])) {
 <?php echo ($error != "") ? $error : ""; ?>
 <form action="register.php" method="post">
 
-    Username: <input type="text" value="<?php echo $username; ?>" name="username" /><br/>
+    Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
     Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-    Password (confirm): <input type="password" value="<?php echo $password_confirm; ?>" name="password-confirm" /><br/>
-    E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
     <input type="submit" value="Register" name="submit-form" />
 
 </form>
