@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/prism.css" rel="stylesheet" />
+    <link href="assets/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div id="nt-title-container">
+			<ul id="nt-title">
+				<li>Soccer headlines from ESPN</li>
+			</ul>
+		</div>
+		<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="jquery.newsTicker.js"></script>
+		<script>
+		(function() {
+			var espnAPI = "http://api.espn.com/v1/sports/soccer/fifa.world/news?apikey=9a9aep76535puyr423vz5vj2";
+			
+			$.getJSON( espnAPI )
+				
+				.done(function( data ) {
+					var headlines_returned = data.resultsLimit
+					console.log(headlines_returned)
+					var ticker_items = []
+					$.each( data.headlines, function( key, val ) {
+						$( "<li><a href='" + val.links.web.href + "'>" + val.headline + "</a></li>").appendTo("#nt-title");
+						if ( key === (headlines_returned - 1)) {
+							return false;
+						}
+					})
+				
+				})
+			
+			})();
+		</script>
+		<script>
+				$('a[href*=#]').click(function(e) {
+					var href = $.attr(this, 'href');
+					if (href != "#") {
+						$('html, body').animate({
+						scrollTop: $(href).offset().top - 81
+						}, 500);
+						}
+						else {
+							$('html, body').animate({
+						scrollTop: 0
+						}, 500);
+						}
+					return false;
+					});
+				$(window).load(function(){
+			$('code.language-javascript').mCustomScrollbar();
+			});
+		var nt_title = $('#nt-title').newsTicker({
+		row_height: 40,
+		max_rows: 1,
+		duration: 4000,
+		pauseOnHover: 1
+		});
+		
+		</script>
+	</body>
+</html>
