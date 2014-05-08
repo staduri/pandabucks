@@ -35,7 +35,7 @@ class UserTools {
         session_start();
 
 
-       if(isset($_SESSION) && $_SESSION["logged_in"] == 1) {
+       if(isset($_SESSION) && array_key_exists("logged_in", $_SESSION) && $_SESSION["logged_in"] == 1) {
             return unserialize($_SESSION["user"]);
         } else {
             header("Location: login.php");
