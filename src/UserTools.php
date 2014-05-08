@@ -1,7 +1,6 @@
 <?php
 //UserTools.class.php
 
-require_once 'User.php';
 require_once 'DB.php';
 
 class UserTools {
@@ -15,7 +14,7 @@ class UserTools {
         $result = pg_query("SELECT * FROM users WHERE username = '$username' AND password = '$hashedPassword'");
 
         if(pg_num_rows($result) == 1) {
-            $_SESSION["user"] = serialize(new User(pg_fetch_assoc($result)));
+            $_SESSION["user"] = serialize(pg_fetch_assoc($result));
             $_SESSION["login_time"] = time();
             $_SESSION["logged_in"] = 1;
             return true;
@@ -41,6 +40,10 @@ class UserTools {
         } else {
             return true;
         }
+    }
+
+    public function createUser($data) {
+        $this->id = new DB().insert($data, 'users');
     }
 }
 ?>
