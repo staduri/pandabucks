@@ -34,21 +34,23 @@ $games = $userTools->getAllGames();
                 <ul data-role="listview" > <!-- data-inset="true" -->
                     <?php foreach ($games as $game) { ?>
                     <li>
-                        <a href="">
+                        <a href="pick.php?game=<?php echo $game["game_id"]; ?>">
                         <div class="ui-grid-c">
                             <div class="ui-block-a">
-                                <img width="100" height="66" src="https://dl.dropboxusercontent.com/sh/uzii4bdixy0gvqy/28QhjxboVH/200px-Flag_of_Uruguay.svg.png?token_hash=AAEM1ThQOdHafAvcUmAs620V7MXebXOrgH7XPUzC5U
-A1Sw" />
+
+                                <img width="100" height="66" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
+                                <?php echo $game["team1"]; ?>
                             </div>
                             <div class="ui-block-b">
                                 <span style="font-family: Arial; color: #CCCCCC; text-align: center;">
-                                <h3>9:00 AM</h3>
-                                <h3>PST</h3>
+                                <h3>
+                                <?php echo $game["time"] ?>
+                                </h3>
                                 </span>
                             </div>
                             <div class="ui-block-c">
-                                <img width="100" height="66" src="https://dl.dropboxusercontent.com/sh/uzii4bdixy0gvqy/JIN-22f5we/200px-Flag_of_the_Netherlands.svg.png?token_hash=AAEM1ThQOdHafAvcUmAs620V7MXebXOrgH
-7XPUzC5UA1Sw" />
+                                <img width="100" height="66" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
+                                <?php echo $game["team2"]; ?>
                             </div>
                             <div class="ui-block-d">Your pick</div>
                         </div>
