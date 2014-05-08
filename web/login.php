@@ -73,6 +73,8 @@ if(isset($_POST['submit-form'])) {
 
     </head>
     <body>
+
+
     <?php
         if($error != "") {
             echo $error."<br/>";
@@ -80,7 +82,10 @@ if(isset($_POST['submit-form'])) {
     ?>
 
     <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
-        <div data-role="navbar">
+        <div>
+            <img src="img/paul.talktopus.png" width="100%">
+        </div>
+        <div data-role="navbar" style="padding-top: 15px">
             <ul>
                 <li><a href="#login" data-ajax="false">Sign In</a></li>
                 <li><a href="#register" data-ajax="false">Register</a></li>
