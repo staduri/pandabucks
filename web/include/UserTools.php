@@ -42,6 +42,11 @@ class UserTools {
         }
     }
 
+    public function getAPick($uid, $gid) {
+        $result = $this->db->select("users_betting", "user_id='".$uid."' and game_id='".$gid."'");
+        return $result;
+    }
+
     //Log the user out. Destroy the session variables.
     public function logout() {
         unset($_SESSION['user']);
