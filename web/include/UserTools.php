@@ -61,8 +61,21 @@ class UserTools {
         $id = $this->db->insert($data, 'users');
     }
 
+    public function getAllFlags() {
+        $result = $this->db->query("select team_id, absolute_flag_url from teams");
+
+        $flags = array();
+
+        while($row = pg_fetch_row($result)) {
+            $flags[$row[0]] = $row[1];
+
+        }
+
+        return $flags;
+    }
+
     public function getAllGames() {
-        $result = $this->db->query("select a.game_id,a.time,b.name,c.name, a.tournament_stage
+        $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage
 
                                     from fixtures a
                                     join teams b on a.team1=b.team_id
@@ -76,8 +89,10 @@ class UserTools {
                 "game_id" => $row[0],
                 "time" => $row[1],
                 "team1" => $row[2],
-                "team2" => $row[3],
-                "stage" => $row[4]
+                "team1_id" => $row[3],
+                "team2" => $row[4],
+                "team2_id" => $row[5],
+                "stage" => $row[6]
             );
 
             array_push($games, $game);
