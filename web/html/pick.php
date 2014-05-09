@@ -51,10 +51,10 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
     </style>
 </head>
 <body>
-    <div class="ui-grid-a">
+    <div class="ui-grid-a" style="width: 100%;">
         <form action="pick.php" method="get">
             <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
-                <div class="ui-block-a">
+                <div class="ui-block-a" style="width: 100%;">
                     <div data-role="header" style="background-color: #00d170;">
                         <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
                     </div>
