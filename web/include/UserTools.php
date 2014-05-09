@@ -180,7 +180,7 @@ class UserTools {
 
     public function getLeaderboard() {
         $result = $this->db->query("select
-                                    a.nickname,
+                                    coalesce(a.nickname,a.email),
                                     sum(c.points) points
                                     from users a
                                     join users_betting b on a.user_id=b.user_id
@@ -215,6 +215,17 @@ class UserTools {
             array_push($leaders, $leader);
         }
         return $leaders;
+    }
+
+    public function getLastUpdateLeaderboard() {
+        $result = $this->db->query("select
+                                    max(result_timestamp)
+                                    from results;");
+        $row = pg_fetch_row($result);
+        
+        $last_update_leaderboard = $row[0];
+        
+        return $last_update_leaderboard;
     }
 }
 ?>

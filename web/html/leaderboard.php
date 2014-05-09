@@ -42,13 +42,6 @@
                     <div class="ui-block-c">Points</div>
                 </div>
             </li>
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">?</div>
-                    <div class="ui-block-b">Test static row</div>
-                    <div class="ui-block-c">10000</div>
-                </div>
-            </li>
             <?php
                 $rank_num = 1;
                 foreach ($leaderboard as $row) {
