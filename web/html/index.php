@@ -25,12 +25,16 @@ date_default_timezone_set('America/Los_Angeles');
     <body>
             <div class="ui-grid-a" style="width: 680px; margin: 0 auto;">
                 <div class="ui-block-a">
-                    <div data-role="header" style="background-color: #00d170;">
-                        <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
+                    <div data-role="header" style="height:80px; background: #00d170 url('img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
+                        <div style="display: block; padding-top:30px; padding-right:15px; vertical-align: middle;float: right;">
+                            <a href="logout.php">Logout</a>
+                        </div>
                     </div>
-                    <fieldset class="ui-grid-a">
+
+                    <fieldset class="ui-grid-b">
                         <div class="ui-block-a"><input type="button" value="Picks" data-theme="b" /></div>
                         <div class="ui-block-b"><input type="button" value="Leaders" data-theme="a" onclick="location.href='leaderboard.php';" /></div>
+                        <div class="ui-block-c"><input type="button" value="Logout" data-theme="c" onclick="location.href='logout.php';" /></div>
                     </fieldset>
                 </div>
                 <div class="ui-block-a">

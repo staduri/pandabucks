@@ -24,9 +24,12 @@
 <body>
 <div class="ui-grid-a" style="width: 100%;">
     <div class="ui-block-a" style="width: 100%;">
-        <div data-role="header" style="background-color: #00d170;">
-            <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
+        <div data-role="header" style="height:80px; background: #00d170 url('img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
+            <div style="display: block; padding-top:30px; padding-right:15px; vertical-align: middle;float: right;">
+                <a href="logout.php">Logout</a>
+            </div>
         </div>
+
         <fieldset class="ui-grid-a">
             <div class="ui-block-a"><input type="submit" value="Picks" data-theme="a" onclick="location.href='index.php';" /></div>
             <div class="ui-block-b"><input type="reset" value="Leaders" data-theme="b" /></div>

@@ -55,11 +55,13 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 <body>
     <div class="ui-grid-a" style="width: 100%;">
         <form id="aform" action="pick.php" method="get">
-            <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
-            <input name="user_id" type="hidden" value="<?php echo $uid ?>">
+            <input id="game" name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
+            <input id="user_id" name="user_id" type="hidden" value="<?php echo $uid ?>">
                 <div class="ui-block-a" style="width: 100%;">
-                    <div data-role="header" style="background-color: #00d170;">
-                        <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
+                    <div data-role="header" style="height:80px; background: #00d170 url('img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
+                        <div style="display: block; padding-top:30px; padding-right:15px; vertical-align: middle;float: right;">
+                            <a href="logout.php">Logout</a>
+                        </div>
                     </div>
 
                     <div style="position:relative; text-align: center;">
@@ -119,7 +121,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 <script type="text/javascript">
     $(document).ready(function(){
         $("#submit").click(function(ev) {
-            //ev.preventDefault();
+            ev.preventDefault();
 
             var items = ["1.mp3", "2.mp3", "3.mp3"];
 
@@ -138,6 +140,18 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                 loop: false,
                 swfPath: 'js'
             });
+//
+//            $.ajax({
+//                url: "pick.php",
+//                type: "get",
+//                data: {
+//                    game: $("#game").text(),
+//                    user_id: $("#user_id").text()
+//                },
+//                success: function (data) {
+//                    alert("Success");
+//                })
+//            });
         });
     });
 </script>
