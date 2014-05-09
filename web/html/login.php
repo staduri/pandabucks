@@ -85,25 +85,13 @@ function js_redirect($url) {
 }
 ?>
 
-        <div data-role="tabs" id="tabs" style="max-width: 480px; margin: 0 auto;">
-            <div data-role="navbar" style="padding-top: 15px">
-                <ul>
-                    <li><a href="#login" data-ajax="false">Sign In</a></li>
-                    <li><a href="#register" data-ajax="false">Register</a></li>
-                </ul>
-            </div>
+        <div style="background-color: #00d170; max-width: 480px; margin: 0 auto;">
+            <img height="150px" src="img/full-logo.png" style="display: block; margin:auto;">
             <div id="login" class="ui-body-d ui-content">
                 <form action="login.php" method="post">
-                    Username: <input type="email" name="username" value="<?php echo $username; ?>" /><br/>
-                    Password: <input type="password" name="password" value="" /><br/>
+                    <input type="email" name="username" value="<?php echo $username; ?>" placeholder="Pandora Email"/><br/>
+                    <input type="password" name="password" value="" placeholder="Password"/><br/>
                     <input type="submit" value="Login" name="submit-login" />
-                </form>
-            </div>
-            <div id="register" class="ui-body-d ui-content">
-                <form action="login.php" method="post">
-                    Username: <input type="email" value="<?php echo $username; ?>" name="username" /><br/>
-                    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
                             <img width="200px" src="img/paylocity-holding-corp-logo.png">
@@ -114,7 +102,7 @@ function js_redirect($url) {
                         </div>
                     </div><!-- /grid-a -->
 
-                    <input type="submit" value="Register" name="submit-form" />
+                    <input type="submit" value="Sign Up" name="submit-form" />
                 </form>
             </div>
         </div>
