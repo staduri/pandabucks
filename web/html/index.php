@@ -7,7 +7,8 @@ ini_set('display_errors', '1');
 
 $userTools = new UserTools();
 
-$uid = $userTools->checkSession()["user_id"];
+$uidt = $userTools->checkSession();
+$uid = $uidt["user_id"];
 
 $flags = $userTools->getAllFlags();
 $games = $userTools->getAllGames();
