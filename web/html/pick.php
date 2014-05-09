@@ -43,10 +43,6 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 <head>
     <?php require_once('../include/header.php') ?>
     <style type="text/css">
-        .label {
-            max-width: 480px; text-align: center; display: block;
-        }
-
         .center {
             margin: 0 auto;
             display: block;
@@ -55,8 +51,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
     </style>
 </head>
 <body>
-<div id="container">
-    <div class="ui-grid-b" class="label">
+    <div class="ui-grid-a">
         <form action="pick.php" method="get">
             <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
             <div class="ui-grid-a">
@@ -120,6 +115,5 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
             </div>
         </form>
     </div>
-</div>
 </body>
 </html>
