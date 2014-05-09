@@ -44,7 +44,7 @@ date_default_timezone_set('America/Los_Angeles');
                         <?php foreach ($games as $game) { ?>
                         <li>
                             <a href="pick.php?game=<?php echo $game["game_id"]; ?>">
-                            <div class="ui-grid-c">
+                            <div class="ui-grid-b">
                                 <div class="ui-block-a">
                                     <img width="100" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
                                     <?php echo $game["team1"]; ?>
