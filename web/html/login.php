@@ -84,27 +84,42 @@ function js_redirect($url) {
     return true;
 }
 ?>
-
-        <div style="background-color: #00d170; max-width: 480px; margin: 0 auto;">
+        <div data-role="tabs" id="tabs" style="background-color: #00d170; max-width: 480px; margin: 0 auto;">
             <img height="150px" src="img/full-logo.png" style="display: block; margin:auto;">
+            <div data-role="navbar" style="padding-top: 15px">
+                <ul>
+                    <li><a href="#login" data-ajax="false">Login</a></li>
+                    <li><a href="#register" data-ajax="false">Sign Up</a></li>
+                </ul>
+            </div>
             <div id="login" class="ui-body-d ui-content">
                 <form action="login.php" method="post">
                     <input type="email" name="username" value="<?php echo $username; ?>" placeholder="Pandora Email"/><br/>
                     <input type="password" name="password" value="" placeholder="Password"/><br/>
                     <input type="submit" value="Login" name="submit-login" />
+                </form>
+            </div>
+            <div id="register" class="ui-body-d ui-content">
+                <form action="login.php" method="post">
+                    <input type="text" value="" name="nickname" placeholder="Nickname"/><br/>
+                    <input type="email" value="" name="username" placeholder="Pandora Email"/><br/>
+                    <input type="password" value="" name="password" placeholder="Password"/><br/>
+
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
                             <img width="200px" src="img/paylocity-holding-corp-logo.png">
                         </div>
                         <div class="ui-block-b">
                             <input type="checkbox" id="terms" checked/>
-                            <label for="terms">Please deduct my losses from Paylocity</label>
+                            <label for="terms">Please deduct all my losses from Paylocity</label>
                         </div>
                     </div><!-- /grid-a -->
 
-                    <input type="submit" value="Sign Up" name="submit-form" />
+                    <input type="submit" value="Sign Up" name="submit-form"/>
                 </form>
             </div>
+            <footer style="color: white; text-align: center">&copy; 2014 Pandathletico Soccer PERG</footer>
         </div>
+
     </body>
 </html>
