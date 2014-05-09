@@ -54,23 +54,25 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
     </style>
 </head>
 <body>
-<div id="container" style="max-width: 680px;">
-    <div data-role="header" style="background-color: #00d170">
-        <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
-    </div>
+<div id="container">
     <div class="ui-grid-b" class="label">
         <form action="pick.php" method="get">
             <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
-            <div class="ui-block-a">
-                <div style="position:relative; text-align: center;">
-                    <h4>Pick a Result</h4>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <div data-role="header" style="background-color: #00d170;">
+                        <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
+                    </div>
+
+                    <div style="position:relative; text-align: center;">
+                        <h4>Pick a Result</h4>
+                    </div>
                 </div>
-            </div>
-            <div class="ui-block-a" style="width: 100%; display: block; margin: 0 auto;">
-                 <div style="width: 100%; text-align: center; display: block; margin: 0 auto;">
+
+                <div class="ui-block-a">
                     <fieldset data-role="controlgroup" data-type="horizontal">
                         <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="1" <?php echo $is_selection_1 ?>>    <!-- checked="checked" -->
-                        <label for="radio-choice-h-2a" class="label">
+                        <label for="radio-choice-h-2a">
                             <table>
                                 <tr>
                                     <td>
@@ -82,7 +84,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                             </table>
                         </label>
                         <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="2" <?php echo $is_selection_2 ?>>
-                        <label for="radio-choice-h-2b" class="label">
+                        <label for="radio-choice-h-2b">
                             <table>
                                 <tr>
                                     <td>
@@ -94,7 +96,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                             </table>
                         </label>
                         <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="X" <?php echo $is_selection_3 ?>>
-                        <label for="radio-choice-h-2c" class="label">
+                        <label for="radio-choice-h-2c">
                             <table>
                                 <tr>
                                     <td>
@@ -107,12 +109,13 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                         </label>
                     </fieldset>
                  </div>
-            </div>
-            <div class="ui-block-a">
-                &nbsp;
-            </div>
-            <div class="ui-block-a">
-                <input id="submit" type="submit" value="Done" class="center"/>
+                <div class="ui-block-a">
+                    &nbsp;
+                </div>
+                <div class="ui-block-a">
+                    <input id="submit" type="submit" value="Done" class="center"/>
+                </div>
+
             </div>
         </form>
     </div>
