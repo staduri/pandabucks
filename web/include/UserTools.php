@@ -227,5 +227,20 @@ class UserTools {
         
         return $last_update_leaderboard;
     }
+
+    public function setAPick($uid, $game, $choice) {
+        $check = $this->db->query("select user_id,game_id,prediction from users_betting where game_id=".$game);
+        $data = array(
+            "user_id" => $uid,
+            "game_id" => $game,
+            "prediction" => $choice
+        );
+
+        if(pg_num_rows($check) >= 1) {
+            $this->db->update($data, "users_betting", "game_id=".$game." and user_id=".$uid);
+        } else {
+            $this->db->insert($data, "users_betting");
+        }
+    }
 }
 ?>

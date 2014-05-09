@@ -46,7 +46,7 @@ class DB {
 
     public function update($data, $table, $where) {
         foreach ($data as $column => $value) {
-            $sql = "UPDATE $table SET $column = $value WHERE $where";
+            $sql = "UPDATE $table SET $column = '$value' WHERE $where";
             pg_query($sql) or die("Some lame DB error");
         }
         return true;
