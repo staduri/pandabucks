@@ -234,7 +234,7 @@ class UserTools {
     }
 
     public function setAPick($uid, $game, $choice) {
-        $check = $this->db->query("select user_id,game_id,prediction from users_betting where game_id=".$game);
+        $check = $this->db->query("select user_id,game_id,prediction from users_betting where user_id=".$uid." and game_id=".$game);
         $data = array(
             "user_id" => $uid,
             "game_id" => $game,
