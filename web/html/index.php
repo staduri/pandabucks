@@ -21,18 +21,6 @@ date_default_timezone_set('America/Los_Angeles');
 <html>
     <head>
         <?php require_once('../include/header.php') ?>
-        <style type="text/css">
-            .vertical-divide {
-                position: relative;
-                height:30px;
-                width: 0px;
-                border:5px solid darkgrey;
-                -webkit-border-radius: 10px;
-                -moz-border-radius: 10px;
-                border-radius: 10px;
-                margin:5px;
-            }
-        </style>
     </head>
     <body>
         <div id="container">
