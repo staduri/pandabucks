@@ -12,6 +12,9 @@ $uid = $userTools->checkSession()["user_id"];
 $flags = $userTools->getAllFlags();
 $games = $userTools->getAllGames();
 
+
+date_default_timezone_set('America/Los_Angeles');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +22,7 @@ $games = $userTools->getAllGames();
         <?php require_once('../include/header.php') ?>
     </head>
     <body>
-        <div class="ui-grid-b">
+        <div class="ui-grid-b" style="margin: 0 auto;">
             <div class="ui-block-a">
                 <fieldset class="ui-grid-a">
                     <div class="ui-block-a"><input type="button" value="Picks" data-theme="b" /></div>

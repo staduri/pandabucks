@@ -7,7 +7,7 @@ class DB {
     protected $db_user = 'ec2-user';
     protected $db_pass = '';
     protected $db_host = 'localhost';
-    protected $db_port = '5432';
+    protected $db_port = '5437';
 
     private $connection;
 

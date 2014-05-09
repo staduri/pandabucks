@@ -15,8 +15,11 @@
     if(is_null($leaderboard)) {
     die("error. could not retrieve leaderboard.");
 }
-    ?>
+    date_default_timezone_set('America/Los_Angeles');
+    $page = $_SERVER['PHP_SELF'];
+?>
 
+    <meta http-equiv="refresh" content="10;URL='<?php echo $page?>'">
 </head>
 <body>
 <div class="ui-grid-b">
@@ -28,8 +31,9 @@
     </div>
     <div class="ui-block-a">
         <div style="text-align: center">
-            <h2>Leaderboard</h2>
-            <h3>Updated whenever</h3>
+            <div style="text-align: center">
+                <h2><?php echo date('Y-m-d H:i:s'); ?></h2>
+            </div>
         </div>
     </div>
 
