@@ -37,7 +37,7 @@ if(isset($_POST['submit-form'])) {
     //retrieve the $_POST variables
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $email = $_POST['email'];
+    $nickname = $_POST['nickname'];
 
     //initialize variables for form validation
     $success = true;
@@ -60,6 +60,7 @@ if(isset($_POST['submit-form'])) {
         $data = array(
             "email" => $username,
             "password" => md5($password),
+            "nickname" => $nickname,
             "paid" => "false"
         );
 
