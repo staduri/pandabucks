@@ -22,8 +22,8 @@
     <meta http-equiv="refresh" content="10;URL='<?php echo $page?>'">
 </head>
 <body>
-<div class="ui-grid-b">
-    <div class="ui-block-a">
+<div class="ui-grid-a" style="width: 100%;">
+    <div class="ui-block-a" style="width: 100%;">
         <div data-role="header" style="background-color: #00d170;">
             <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
         </div>
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div class="ui-block-a">
+    <div class="ui-block-a" style="width: 100%;">
         <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke ui-grid-solo">
             <thead>
                 <tr>
