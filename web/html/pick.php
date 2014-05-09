@@ -18,7 +18,7 @@ $flags = $userTools->getAllFlags();
 $game = $userTools->getAGame($_GET["game"]);
 
 if (isset($_GET['radio-choice-h-2'])) {
-    $userTools->setAPick($uid, $_GET["game"], $_GET['radio-choice-h-2']);
+    $userTools->setAPick($_GET["user_id"], $_GET["game"], $_GET['radio-choice-h-2']);
 }
 
 $userPick = $userTools->getAPick($uid, $_GET["game"]);
@@ -54,6 +54,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
     <div class="ui-grid-a" style="width: 100%;">
         <form action="pick.php" method="get">
             <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
+            <input name="user_id" type="hidden" value="<?php echo $uid ?>">
                 <div class="ui-block-a" style="width: 100%;">
                     <div data-role="header" style="background-color: #00d170;">
                         <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
