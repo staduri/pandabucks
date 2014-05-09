@@ -121,8 +121,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 <script type="text/javascript">
     $(document).ready(function(){
         $("#submit").click(function(ev) {
-            ev.preventDefault();
-
+            //ev.preventDefault();
             var items = ["1.mp3", "2.mp3", "3.mp3"];
 
             $('#jquery_jplayer_1').jPlayer({
@@ -140,18 +139,6 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                 loop: false,
                 swfPath: 'js'
             });
-//
-//            $.ajax({
-//                url: "pick.php",
-//                type: "get",
-//                data: {
-//                    game: $("#game").text(),
-//                    user_id: $("#user_id").text()
-//                },
-//                success: function (data) {
-//                    alert("Success");
-//                })
-//            });
         });
     });
 </script>
