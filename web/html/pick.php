@@ -54,7 +54,6 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
     <div class="ui-grid-a">
         <form action="pick.php" method="get">
             <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
-            <div class="ui-grid-a">
                 <div class="ui-block-a">
                     <div data-role="header" style="background-color: #00d170;">
                         <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
@@ -111,8 +110,6 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                 <div class="ui-block-a">
                     <input id="submit" type="submit" value="Done" class="center"/>
                 </div>
-
-            </div>
         </form>
     </div>
 </body>
