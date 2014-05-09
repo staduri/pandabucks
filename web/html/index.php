@@ -42,7 +42,7 @@ date_default_timezone_set('America/Los_Angeles');
                     </div>
                     <fieldset class="ui-grid-a">
                         <div class="ui-block-a"><input type="button" value="Picks" data-theme="b" /></div>
-                        <div class="ui-block-b"><input type="button" value="Leaderboard" data-theme="a" onclick="location.href='leaderboard.php';" /></div>
+                        <div class="ui-block-b"><input type="button" value="Leaders" data-theme="a" onclick="location.href='leaderboard.php';" /></div>
                     </fieldset>
                 </div>
                 <div class="ui-block-a">

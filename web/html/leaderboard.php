@@ -24,43 +24,48 @@
 <body>
 <div class="ui-grid-b">
     <div class="ui-block-a">
+        <div data-role="header" style="background-color: #00d170;">
+            <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
+        </div>
         <fieldset class="ui-grid-a">
             <div class="ui-block-a"><input type="submit" value="Picks" data-theme="a" onclick="location.href='index.php';" /></div>
-            <div class="ui-block-b"><input type="reset" value="Leaderboard" data-theme="b" /></div>
+            <div class="ui-block-b"><input type="reset" value="Leaders" data-theme="b" /></div>
         </fieldset>
     </div>
     <div class="ui-block-a">
         <div style="text-align: center">
             <div style="text-align: center">
-                <h2><?php echo date('Y-m-d H:i:s'); ?></h2>
+                <h2><?php echo date('j F h:i A'); ?></h2>
             </div>
         </div>
     </div>
 
     <div class="ui-block-a">
-        <ul data-role="listview" > <!-- data-inset="true" -->
-            <li>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">&nbsp;</div>
-                    <div class="ui-block-b">Name</div>
-                    <div class="ui-block-c">Points</div>
-                </div>
-            </li>
-            <?php
-                $rank_num = 1;
-                foreach ($leaderboard as $row) {
-                    echo '<li>';
-                        echo '<div class="ui-grid-b">';
-                        echo '<div class="ui-block-a">' . $rank_num . '</div>';
-                        echo '<div class="ui-block-b">' . $row['user_id'] . '</div>';
-                        echo '<div class="ui-block-c">' . number_format($row['points']) . '</div>';
-                        echo '</div>';
-                    echo '</li>';
-            
-                    $rank_num += 1;
-                }
-            ?>
-        </ul>
+        <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke ui-grid-solo">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $rank_num = 1;
+                    foreach ($leaderboard as $row) {
+                        echo '<tr>';
+                            echo '<td><img height="150px" src="img/'.$row["user_id"].'.jpg"</td>';
+                            echo '<td>' . $rank_num . '</td>';
+                            echo '<td>' . $row['user_id'] . '</td>';
+                            echo '<td>' . number_format($row['points']) . '</td>';
+                        echo '</tr>';
+
+                        $rank_num += 1;
+                    }
+                ?>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
