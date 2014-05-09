@@ -49,10 +49,12 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
             width: 100%;
         }
     </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script src="js/jquery.jplayer.min.js"></script>
 </head>
 <body>
     <div class="ui-grid-a" style="width: 100%;">
-        <form action="pick.php" method="get">
+        <form id="aform" action="pick.php" method="get">
             <input name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
             <input name="user_id" type="hidden" value="<?php echo $uid ?>">
                 <div class="ui-block-a" style="width: 100%;">
@@ -113,5 +115,31 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                 </div>
         </form>
     </div>
+    <div id="jquery_jplayer_1"></div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#submit").click(function(ev) {
+            //ev.preventDefault();
+
+            var items = ["1.mp3", "2.mp3", "3.mp3"];
+
+            $('#jquery_jplayer_1').jPlayer({
+                ready: function() {
+                $(this).jPlayer('setMedia', {
+                    mp3: 'audio/'+items[Math.floor(Math.random()*items.length)]
+                }).jPlayer('play');
+                var click = document.ontouchstart === undefined ? 'click' : 'touchstart';
+                var kickoff = function () {
+                $('#jquery_jplayer_1').jPlayer('play');
+                    document.documentElement.removeEventListener(click, kickoff, true);
+                };
+                document.documentElement.addEventListener(click, kickoff, true);
+                },
+                loop: false,
+                swfPath: 'js'
+            });
+        });
+    });
+</script>
 </body>
 </html>
