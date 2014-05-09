@@ -3,10 +3,13 @@
 require_once '../include/UserTools.php';
 
 $userTools = new UserTools();
-$uidt = $userTools->checkSession();
-$userTools->logout();
+if(isset($_SESSION) && array_key_exists("logged_in", $_SESSION) && $_SESSION["logged_in"] == 1) {
+    $userTools->logout();
+    header("Location: logout.php");
+} else {
+    // nothign
+}
 
-header("Location: login.php");
 ?>
 <html>
 <head>

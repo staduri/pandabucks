@@ -49,6 +49,7 @@ class UserTools {
 
     //Log the user out. Destroy the session variables.
     public function logout() {
+        session_start();
         unset($_SESSION['user']);
         unset($_SESSION['login_time']);
         unset($_SESSION['logged_in']);
