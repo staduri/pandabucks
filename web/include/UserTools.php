@@ -185,7 +185,7 @@ class UserTools {
 
     public function getLeaderboard() {
         $result = $this->db->query("select
-                                    coalesce(a.nickname,a.email),
+                                    a.email,
                                     sum(c.points) points
                                     from users a
                                     join users_betting b on a.user_id=b.user_id
