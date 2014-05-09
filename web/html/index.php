@@ -23,8 +23,7 @@ date_default_timezone_set('America/Los_Angeles');
         <?php require_once('../include/header.php') ?>
     </head>
     <body>
-        <div id="container">
-            <div class="ui-grid-b" style="margin: 0 auto;">
+            <div class="ui-grid-b" style="width: 100%; margin: 0 auto;">
                 <div class="ui-block-a">
                     <div data-role="header" style="background-color: #00d170;">
                         <img height="75px" src="img/full-logo.png" style="display: block; margin:auto;">
@@ -68,6 +67,5 @@ date_default_timezone_set('America/Los_Angeles');
                     </ul>
                 </div>
             </div>
-        </div>
     </body>
 </html>
