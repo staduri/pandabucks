@@ -187,10 +187,10 @@ class UserTools {
     public function getLeaderboard() {
         $result = $this->db->query("select
                                     a.email,
-                                    sum(c.points) points
+                                    sum(case when c.points is null then 0 else c.points end) points
                                     from users a
-                                    join users_betting b on a.user_id=b.user_id
-                                    join
+                                    left outer join users_betting b on a.user_id=b.user_id
+                                    left outer join
                                     (
                                     select
                                     a.game_id,
