@@ -57,10 +57,6 @@ date_default_timezone_set('America/Los_Angeles');
                                     <span style="font-size: small;font-family: Arial; color: black;">
                                         <?php echo date("j F", $game["time"]) ?>
                                     </span>
-                                    <br>
-                                    <span style="font-size: x-small;font-family: Arial; color: black;">
-                                        <?php echo date("H:i", $game["time"]) ?> PST
-                                    </span>
                                 </div>
                                 <div class="col-md-4" style="text-align: center;">
                                     <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
