@@ -200,6 +200,7 @@ class UserTools {
 
     public function getLeaderboard() {
         $result = $this->db->query("select
+                                    a.email,
                                     a.nickname,
                                     sum(case when c.points is null then 0 else c.points end) points
                                     from users a
@@ -229,7 +230,8 @@ class UserTools {
         while ($row = pg_fetch_row($result)) {
             $leader = array(
                 "user_id" => $row[0],
-                "points" => $row[1]
+                "nickname" => $row[1],
+                "points" => $row[2]
             );
 
             array_push($leaders, $leader);
