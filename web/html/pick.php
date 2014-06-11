@@ -42,16 +42,10 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php require_once('../include/header.php') ?>
-    <style type="text/css">
-        .center {
-            margin: 0 auto;
-            display: block;
-            width: 100%;
-        }
-    </style>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     <script src="js/jquery.jplayer.min.js"></script>
+
+    <?php require_once('../include/header.php') ?>
 </head>
 <body>
     <div class="ui-grid-a" style="width: 100%;">
@@ -114,7 +108,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                     &nbsp;
                 </div>
                 <div class="ui-block-a">
-                    <input id="submit" type="submit" value="Done" class="center"/>
+                    <input id="submit" type="submit" value="Done" style="margin: 0 auto;display: block;width: 100%;"/>
                 </div>
         </form>
     </div>
