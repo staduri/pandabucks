@@ -54,10 +54,8 @@ date_default_timezone_set('America/Los_Angeles');
                                     <?php echo $game["team1"]; ?>
                                 </div>
                                 <div class="ui-block-b">
-                                    <span style="font-family: Arial; color: #CCCCCC; text-align: center;">
-                                    <h3>
-                                    <?php echo date("j F H:i", $game["time"]) ?>
-                                    </h3>
+                                    <span style="font-size: x-small;font-family: Arial; color: black; text-align: center;">
+                                        <?php echo date("j F H:i", $game["time"]) ?>
                                     </span>
                                 </div>
                                 <div class="ui-block-c">
