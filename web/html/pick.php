@@ -18,8 +18,13 @@ $flags = $userTools->getAllFlags();
 $game = $userTools->getAGame($_GET["game"]);
 
 if (isset($_GET['radio-choice-h-2'])) {
-    $userTools->setAPick($_GET["user_id"], $_GET["game"], $_GET['radio-choice-h-2']);
-    header("Location: leaderboard.php");
+    if ($game['time'] > time()) {
+        echo("Bidding for this game is now closed");
+    } else {
+        $userTools->setAPick($_GET["user_id"], $_GET["game"], $_GET['radio-choice-h-2']);
+    }
+
+    header("Location: index.php");
 }
 
 $userPick = $userTools->getAPick($uid, $_GET["game"]);
