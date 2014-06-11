@@ -69,7 +69,7 @@ date_default_timezone_set('America/Los_Angeles');
                                             if ($prediction == "1") {
                                                 $flag_url = $flags[$game["team1_id"]];
                                             } else if ($prediction == "2") {
-                                                $flag_url = $flags[$game["team1_id"]];
+                                                $flag_url = $flags[$game["team2_id"]];
                                             } else {
                                                 $flag_url = "img/neutral.jpeg";
                                             }
