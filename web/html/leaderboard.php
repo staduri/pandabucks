@@ -18,8 +18,6 @@
     date_default_timezone_set('America/Los_Angeles');
     $page = $_SERVER['PHP_SELF'];
 ?>
-
-    <meta http-equiv="refresh" content="10;URL='<?php echo $page?>'">
 </head>
 <body>
 <div class="ui-grid-a" style="width: 100%;">
