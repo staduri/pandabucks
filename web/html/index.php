@@ -48,19 +48,19 @@ date_default_timezone_set('America/Los_Angeles');
                         <?php foreach ($games as $game) { ?>
                         <li>
                             <a href="pick.php?game=<?php echo $game["game_id"]; ?>">
-                            <div class="ui-grid-b">
-                                <div class="ui-block-a">
-                                    <img width="100" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
-                                    <?php echo $game["team1"]; ?>
+                            <div class="col-md-10">
+                                <div class="col-md-5" style="text-align: center;">
+                                    <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
+                                    <span><?php echo $game["team1"]; ?></span>
                                 </div>
-                                <div class="ui-block-b">
-                                    <span style="font-size: x-small;font-family: Arial; color: black; text-align: center;">
+                                <div class="col-md-2" style="text-align: center;">
+                                    <span style="font-size: x-small;font-family: Arial; color: black;">
                                         <?php echo date("j F H:i", $game["time"]) ?>
                                     </span>
                                 </div>
-                                <div class="ui-block-c">
-                                    <img width="100" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
-                                    <?php echo $game["team2"]; ?>
+                                <div class="col-md-5" style="text-align: center;">
+                                    <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
+                                    <span><?php echo $game["team2"]; ?></span>
                                 </div>
                             </div>
                             </a>
