@@ -21,10 +21,11 @@ date_default_timezone_set('America/Los_Angeles');
 <html>
     <head>
         <?php require_once('../include/header.php') ?>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     </head>
     <body>
-            <div class="ui-grid-a" style="width: 680px; margin: 0 auto;">
-                <div class="ui-block-a">
+            <div class="row col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                     <div data-role="header" style="height:80px; background: #00d170 url('img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
                         <div style="display: block; padding-top:30px; padding-right:15px; vertical-align: middle;float: right;">
                             <a href="logout.php">Logout</a>
@@ -36,13 +37,13 @@ date_default_timezone_set('America/Los_Angeles');
                         <div class="ui-block-b"><input type="button" value="Leaders" data-theme="a" onclick="location.href='leaderboard.php';" /></div>
                     </fieldset>
                 </div>
-                <div class="ui-block-a">
+                <div class="col-md-12">
                     <div style="text-align: center">
                         <h2><?php echo date('j F h:i A'); ?></h2>
                         <h3>Make your picks</h3>
                     </div>
                 </div>
-                <div class="ui-block-a">
+                <div class="col-md-12">
                     <ul data-role="listview" > <!-- data-inset="true" -->
                         <?php foreach ($games as $game) { ?>
                         <li>
@@ -55,7 +56,7 @@ date_default_timezone_set('America/Los_Angeles');
                                 <div class="ui-block-b">
                                     <span style="font-family: Arial; color: #CCCCCC; text-align: center;">
                                     <h3>
-                                    <?php echo date("j F", $game["time"]) ?>
+                                    <?php echo date("j F H:i", $game["time"]) ?>
                                     </h3>
                                     </span>
                                 </div>
