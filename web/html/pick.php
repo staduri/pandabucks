@@ -17,9 +17,14 @@ if(!isset($_GET["game"])) {
 $flags = $userTools->getAllFlags();
 $game = $userTools->getAGame($_GET["game"]);
 
+
 if (isset($_GET['radio-choice-h-2'])) {
-    $userTools->setAPick($_GET["user_id"], $_GET["game"], $_GET['radio-choice-h-2']);
-    header("Location: index.php");
+    if ($game["time"] < time()) {
+        echo "Betting for this game is now closed";
+    } else {
+        $userTools->setAPick($_GET["user_id"], $_GET["game"], $_GET['radio-choice-h-2']);
+        header("Location: index.php");
+    }
 }
 
 $userPick = $userTools->getAPick($uid, $_GET["game"]);
@@ -66,7 +71,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 
                 <div class="ui-block-a">
                     <fieldset data-role="controlgroup" data-type="horizontal">
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="1" <?php echo $is_selection_1 ?>>    <!-- checked="checked" -->
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="1" <?php echo $is_selection_1 ?> <?php if ($game["time"] < time()) {echo "disabled";} ?>>    <!-- checked="checked" -->
                         <label for="radio-choice-h-2a">
                             <table>
                                 <tr>
@@ -78,7 +83,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                                 </tr>
                             </table>
                         </label>
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="2" <?php echo $is_selection_2 ?>>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="2" <?php echo $is_selection_2 ?> <?php if ($game["time"] < time()) {echo "disabled";} ?>>
                         <label for="radio-choice-h-2b">
                             <table>
                                 <tr>
@@ -90,7 +95,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                                 </tr>
                             </table>
                         </label>
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="X" <?php echo $is_selection_3 ?>>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="X" <?php echo $is_selection_3 ?> <?php if ($game["time"] < time()) {echo "disabled";} ?>>
                         <label for="radio-choice-h-2c">
                             <table>
                                 <tr>
@@ -108,7 +113,7 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
                     &nbsp;
                 </div>
                 <div class="ui-block-a">
-                    <input id="submit" type="submit" value="Done" style="margin: 0 auto;display: block;width: 100%;"/>
+                    <input id="submit" type="submit" value="Done" style="margin: 0 auto;display: block;width: 100%;" <?php if ($game["time"] < time()) {echo "disabled";} ?>/>
                 </div>
         </form>
     </div>

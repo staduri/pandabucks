@@ -47,7 +47,15 @@ date_default_timezone_set('America/Los_Angeles');
                     <ul data-role="listview" > <!-- data-inset="true" -->
                         <?php foreach ($games as $game) { ?>
                         <li>
+                            <?php
+                                if ($game["time"] >= time()) {
+                            ?>
                             <a href="pick.php?game=<?php echo $game["game_id"]; ?>">
+                            <?php
+                                }
+                            ?>
+
+
                             <div class="col-md-12">
                                 <div class="col-md-2" style="text-align: center; vertical-align:middle;">
                                     <span style="font-size: small;font-family: Arial; color: black;">
