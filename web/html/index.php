@@ -54,8 +54,12 @@ date_default_timezone_set('America/Los_Angeles');
                                     <span><?php echo $game["team1"]; ?></span>
                                 </div>
                                 <div class="col-md-2" style="text-align: center;">
+                                    <span style="font-size: small;font-family: Arial; color: black;">
+                                        <?php echo date("j F", $game["time"]) ?>
+                                    </span>
+                                    <br>
                                     <span style="font-size: x-small;font-family: Arial; color: black;">
-                                        <?php echo date("j F H:i", $game["time"]) ?>
+                                        <?php echo date("H:i", $game["time"]) ?> PST
                                     </span>
                                 </div>
                                 <div class="col-md-5" style="text-align: center;">
