@@ -12,7 +12,7 @@ $uid = $uidt["user_id"];
 
 $flags = $userTools->getAllFlags();
 $games = $userTools->getAllGames();
-
+$predictions = $userTools->getPredictions($uid);
 
 date_default_timezone_set('America/Los_Angeles');
 
@@ -59,11 +59,42 @@ date_default_timezone_set('America/Los_Angeles');
                                     </span>
                                 </div>
                                 <div class="col-md-10">
-                                    <div class="col-md-6" style="text-align: center;">
+
+                                    <div class="col-md-12" style="text-align: center;">
+                                        <?php
+
+                                        if (array_key_exists($game["game_id"], $predictions)) {
+                                            $prediction = $predictions[$game["game_id"]];
+                                            $flag_url = "";
+                                            if ($prediction == "1") {
+                                                $flag_url = $flags[$game["team1_id"]];
+                                            } else if ($prediction == "2") {
+                                                $flag_url = $flags[$game["team1_id"]];
+                                            } else {
+                                                $flag_url = "img/neutral.jpeg";
+                                            }
+                                        ?>
+
+                                        <span>Your Pick</span>
+                                        <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
+
+                                        <?php
+                                        } else {
+                                        ?>
+                                            No Selection
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="col-md-12 divider"><hr></div>
+                                    <div class="col-md-12" style="text-align: center;">
                                         <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
                                         <span><?php echo $game["team1"]; ?></span>
                                     </div>
-                                    <div class="col-md-6" style="text-align: center;">
+                                    <div class="col-md-12" style="text-align: center; color: #DCCCCC;">
+                                        <span>vs</span>
+                                    </div>
+                                    <div class="col-md-12" style="text-align: center;">
                                         <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
                                         <span><?php echo $game["team2"]; ?></span>
                                     </div>

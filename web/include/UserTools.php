@@ -119,6 +119,20 @@ class UserTools {
         return $games;
     }
 
+    public function getPredictions($uid) {
+        $result = $this->db->query("select a.game_id, a.prediction
+                                    from users_betting a
+                                    where a.user_id="
+                                    .$uid
+        );
+
+        $predictions = array();
+        while ($row = pg_fetch_row($result)) {
+            $predictions[$row[0]] = $row[1];
+        }
+        return $predictions;
+    }
+
     public function getAGame($gid) {
         $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage,
                                             d.team1_points, d.team2_points, d.draw_points
