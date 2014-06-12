@@ -83,7 +83,7 @@ date_default_timezone_set('America/Los_Angeles');
                                         <?php
                                         } else {
                                         ?>
-                                            No Selection
+                                            Please make a selection below
                                         <?php
                                         }
                                         ?>
