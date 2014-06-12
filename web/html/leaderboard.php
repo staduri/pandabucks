@@ -59,6 +59,7 @@
                             echo '<td><img height="150px" src="img/'.$row["user_id"].'.jpg"</td>';
                             echo '<td>' . $rank_num . '</td>';
                             echo '<td>' . $row['nickname'] . '</td>';
+                            echo '<td>' . $row['user_id'] . '</td>';
                             echo '<td>' . number_format($row['points']) . '</td>';
                         echo '</tr>';
 
