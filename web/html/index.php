@@ -108,10 +108,6 @@ date_default_timezone_set('America/Los_Angeles');
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12" style="text-align: center; color: #DCCCCC;">
-                                        <span>vs</span>
-                                    </div>
-
                                     <div class="col-md-12 selection" style="text-align: center; display: block;">
                                         <?php
                                         if ($game["time"] >= time()) {
