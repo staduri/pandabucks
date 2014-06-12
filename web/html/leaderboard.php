@@ -1,23 +1,25 @@
+<?php
+
+    require_once('../include/UserTools.php');
+
+    $userTools = new UserTools();
+    $uidt = $userTools->checkSession();
+
+    $leaderboard = $userTools->getLeaderboard();
+
+    if(is_null($leaderboard)) {
+        die("error. could not retrieve leaderboard.");
+    }
+    date_default_timezone_set('America/Los_Angeles');
+    $page = $_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <?php
+        require_once('../include/header.php');
+    ?>
 
-    require_once('../include/header.php');
-    require_once('../include/UserTools.php');
-
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-    $userTools = new UserTools();
-
-    $leaderboard = $userTools->getLeaderboard();
-   
-    if(is_null($leaderboard)) {
-    die("error. could not retrieve leaderboard.");
-}
-    date_default_timezone_set('America/Los_Angeles');
-    $page = $_SERVER['PHP_SELF'];
-?>
 </head>
 <body>
 <div class="ui-grid-a" style="width: 100%;">
