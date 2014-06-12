@@ -47,15 +47,6 @@ date_default_timezone_set('America/Los_Angeles');
                     <ul data-role="listview" > <!-- data-inset="true" -->
                         <?php foreach ($games as $game) { ?>
                         <li>
-                            <?php
-                                if ($game["time"] >= time()) {
-                            ?>
-                            <a href="pick.php?game=<?php echo $game["game_id"]; ?>">
-                            <?php
-                                }
-                            ?>
-
-
                             <div class="col-md-12">
                                 <div class="col-md-2" style="text-align: center; vertical-align:middle;">
                                     <span style="font-size: small;font-family: Arial; color: black;">
@@ -94,21 +85,59 @@ date_default_timezone_set('America/Los_Angeles');
                                         }
                                         ?>
                                     </div>
+
                                     <div class="col-md-12 divider"><hr></div>
-                                    <div class="col-md-12" style="text-align: center;">
+
+                                    <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                        <?php
+                                        if ($game["time"] >= time()) {
+                                            ?>
+                                            <a href="/pick.php?game=<?php echo $game["game_id"] ?>&user_id=<?php echo $uid?>&radio-choice-h-2=1"></a>
+                                        <?php
+                                        } else {
+
+                                        }
+                                        ?>
+
                                         <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
                                         <span><?php echo $game["team1"]; ?></span>
                                     </div>
+
                                     <div class="col-md-12" style="text-align: center; color: #DCCCCC;">
                                         <span>vs</span>
                                     </div>
-                                    <div class="col-md-12" style="text-align: center;">
+
+                                    <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                        <?php
+                                        if ($game["time"] >= time()) {
+                                            ?>
+                                            <a href="/pick.php?game=<?php echo $game["game_id"] ?>&user_id=<?php echo $uid?>&radio-choice-h-2=2"></a>
+                                        <?php
+                                        } else {
+
+                                        }
+                                        ?>
+
                                         <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
                                         <span><?php echo $game["team2"]; ?></span>
                                     </div>
+
+                                    <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                        <?php
+                                        if ($game["time"] >= time()) {
+                                            ?>
+                                            <a href="/pick.php?game=<?php echo $game["game_id"] ?>&user_id=<?php echo $uid?>&radio-choice-h-2=X"></a>
+                                        <?php
+                                        } else {
+
+                                        }
+                                        ?>
+
+                                        <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="img/neutral.jpeg" /><br/>
+                                        <span>Draw</span>
+                                    </div>
                                 </div>
                             </div>
-                            </a>
                         </li>
                         <?php } ?>
                     </ul>
@@ -123,6 +152,33 @@ date_default_timezone_set('America/Los_Angeles');
                 ga('create', 'UA-51832818-1', '54.243.222.155');
                 ga('send', 'pageview');
 
+            </script>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $(".selection").click(function(){
+                        <?php
+                        if ($game["time"] >= time()) {
+                        ?>
+                            window.location=$(this).find("a").attr("href");
+                        <?php
+                        } else {
+                        ?>
+                            alert("Betting for this game is now closed..");
+                        <?php
+                        }
+                        ?>
+                        return false;
+                    });
+
+                    $(".selection").mouseenter(function(){
+                        $(this).css({"background": "#f5f5f5"});
+                        $(this).css({"cursor": "pointer"});
+                    }).mouseleave(function(){
+                            $(this).css({"background": ""});
+                            $(this).css({"cursor": ""});
+                    });
+                });
             </script>
     </body>
 </html>
