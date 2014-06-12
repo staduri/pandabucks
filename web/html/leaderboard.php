@@ -48,6 +48,7 @@
                     <th>&nbsp;</th>
                     <th>Rank</th>
                     <th>Name</th>
+                    <th>Email</th>
                     <th>Points</th>
                 </tr>
             </thead>
