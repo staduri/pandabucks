@@ -56,6 +56,9 @@ date_default_timezone_set('America/Los_Angeles');
                                     <span style="font-size: x-small;font-family: Arial; color: black;">
                                         <?php echo date("H:i", $game["time"]) ?> PST
                                     </span>
+                                    <h3>
+                                        <?php echo $game["team1"] ?> vs <?php echo $game["team2"] ?>
+                                    </h3>
                                 </div>
                                 <div class="col-md-10">
 
@@ -99,8 +102,10 @@ date_default_timezone_set('America/Los_Angeles');
                                         }
                                         ?>
 
-                                        <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
-                                        <span><?php echo $game["team1"]; ?></span>
+                                        <div class="col-md-12">
+                                            <span><?php echo $game["team1"]; ?>: <strong><?php echo $game["team1_points"] ?> points</strong> </span>
+                                            <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-12" style="text-align: center; color: #DCCCCC;">
@@ -117,9 +122,10 @@ date_default_timezone_set('America/Los_Angeles');
 
                                         }
                                         ?>
-
-                                        <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
-                                        <span><?php echo $game["team2"]; ?></span>
+                                        <div class="col-md-12">
+                                            <span><?php echo $game["team2"]; ?>: <strong><?php echo $game["team2_points"] ?> points</strong> </span>
+                                            <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-12 selection" style="text-align: center; display: block;">
@@ -132,9 +138,13 @@ date_default_timezone_set('America/Los_Angeles');
 
                                         }
                                         ?>
+                                        <div class="col-md-12">
+                                            <span>Draw: <strong><?php echo $game["draw_points"] ?> points</strong> </span>
+                                            <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="img/neutral.jpeg" /><br/>
+                                        </div>
 
-                                        <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="img/neutral.jpeg" /><br/>
-                                        <span>Draw</span>
+
+
                                     </div>
                                 </div>
                             </div>

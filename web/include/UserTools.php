@@ -94,11 +94,13 @@ class UserTools {
     }
 
     public function getAllGames() {
-        $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage
+        $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage,
+                                           d.team1_points, d.team2_points, d.draw_points
 
                                     from fixtures a
                                     join teams b on a.team1=b.team_id
                                     join teams c on a.team2=c.team_id
+                                    join odds d on a.game_id=d.game_id
 
                                     order by a.game_id
                                     ");
@@ -111,7 +113,10 @@ class UserTools {
                 "team1_id" => $row[3],
                 "team2" => $row[4],
                 "team2_id" => $row[5],
-                "stage" => $row[6]
+                "stage" => $row[6],
+                "team1_points" => $row[7],
+                "team2_points" => $row[8],
+                "draw_points" => $row[9]
             );
 
             array_push($games, $game);
