@@ -44,8 +44,126 @@ date_default_timezone_set('America/Los_Angeles');
                     </div>
                 </div>
                 <div class="col-md-12">
+                <div data-role="collapsible">
+                    <h3>View Past Games</h3>
+                    <p>Betting for these games is now closed</p>
+                    <ul data-role="listview"> <!-- data-inset="true" -->
+                        <?php foreach ($games as $game) {
+                            if ($game["time"] >= time()) {
+                                continue;
+                            }
+                            ?>
+                            <li>
+                                <div class="col-md-12">
+                                    <div class="col-md-2" style="text-align: center; vertical-align:middle;">
+                                    <span style="font-size: small;font-family: Arial; color: black;">
+                                        <?php echo date("j F", $game["time"]) ?>
+                                    </span>
+                                        <br>
+                                    <span style="font-size: x-small;font-family: Arial; color: black;">
+                                        <?php echo date("H:i", $game["time"]) ?> PST
+                                    </span>
+                                        <h3>
+                                            <?php echo $game["team1"] ?> vs <?php echo $game["team2"] ?>
+                                        </h3>
+                                    </div>
+                                    <div class="col-md-10">
+
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <?php
+
+                                            if (array_key_exists($game["game_id"], $predictions)) {
+                                                $prediction = $predictions[$game["game_id"]];
+                                                $flag_url = "";
+                                                if ($prediction == "1") {
+                                                    $flag_url = $flags[$game["team1_id"]];
+                                                } else if ($prediction == "2") {
+                                                    $flag_url = $flags[$game["team2_id"]];
+                                                } else {
+                                                    $flag_url = "img/neutral.jpeg";
+                                                }
+                                                ?>
+
+                                                <span>Your Pick</span>
+                                                <img class="current_selection" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
+
+                                            <?php
+                                            } else {
+                                                ?>
+                                                Please make a selection below
+                                                <img class="current_selection" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="" /><br/>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+
+                                        <div class="col-md-12 divider"><hr></div>
+
+                                        <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                            <?php
+                                            if ($game["time"] >= time()) {
+                                                ?>
+                                                <custom href="/pick.php" param_game="<?php echo $game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="1"></custom>
+                                            <?php
+                                            } else {
+
+                                            }
+                                            ?>
+
+                                            <div class="col-md-12">
+                                                <span><?php echo $game["team1"]; ?>: <strong><?php echo $game["team1_points"] ?> points</strong> </span>
+                                                <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" /><br/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                            <?php
+                                            if ($game["time"] >= time()) {
+                                                ?>
+                                                <custom href="/pick.php" param_game="<?php echo $game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="2"></custom>
+                                            <?php
+                                            } else {
+
+                                            }
+                                            ?>
+                                            <div class="col-md-12">
+                                                <span><?php echo $game["team2"]; ?>: <strong><?php echo $game["team2_points"] ?> points</strong> </span>
+                                                <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" /><br/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                            <?php
+                                            if ($game["time"] >= time()) {
+                                                ?>
+                                                <custom href="/pick.php" param_game="<?php echo $game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="X"></custom>
+                                            <?php
+                                            } else {
+
+                                            }
+                                            ?>
+                                            <div class="col-md-12">
+                                                <span>Draw: <strong><?php echo $game["draw_points"] ?> points</strong> </span>
+                                                <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="img/neutral.jpeg" /><br/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <div data-role="collapsible" data-collapsed="false">
+                    <h3>Upcoming Games</h3>
+
                     <ul data-role="listview" > <!-- data-inset="true" -->
-                        <?php foreach ($games as $game) { ?>
+                        <?php foreach ($games as $game) {
+                            if ($game["time"] < time()) {
+                                continue;
+                            }
+                            ?>
+
                         <li>
                             <div class="col-md-12">
                                 <div class="col-md-2" style="text-align: center; vertical-align:middle;">
@@ -78,13 +196,13 @@ date_default_timezone_set('America/Los_Angeles');
                                         ?>
 
                                         <span>Your Pick</span>
-                                        <img class="current_selection" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
+                                        <img id="current_selection_<?php echo $game["game_id"] ?>" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
 
                                         <?php
                                         } else {
                                         ?>
                                             Please make a selection below
-                                            <img class="current_selection" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="" /><br/>
+                                            <img id="current_selection_<?php echo $game["game_id"] ?>" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="" /><br/>
                                         <?php
                                         }
                                         ?>
@@ -146,6 +264,7 @@ date_default_timezone_set('America/Los_Angeles');
                         </li>
                         <?php } ?>
                     </ul>
+                    </div>
                 </div>
             </div>
             <script>
@@ -169,6 +288,7 @@ date_default_timezone_set('America/Los_Angeles');
                             var game = $(this).find("custom").attr("param_game");
                             var user = $(this).find("custom").attr("param_user");
                             var prediction = $(this).find("custom").attr("param_choice");
+                            var div = $(this);
                             $.ajax({
                                 type: "GET",
                                 url: url,
@@ -177,7 +297,8 @@ date_default_timezone_set('America/Los_Angeles');
                                     var obj = $.parseJSON(data);
                                     console.log("Successfully posted. New selection - " + obj["game"] + "\n" + obj["selection"]);
                                     // refresh the selection
-                                    $(".current_selection").attr('src', obj["selection"]);
+                                    var cur = $("#current_selection_" + game);
+                                    cur.attr('src', obj["selection"]);
                                 },
                                 error: function(jqXHR, exception){
                                     console.log("Something went wrong");
