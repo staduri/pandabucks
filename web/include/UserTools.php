@@ -230,7 +230,7 @@ class UserTools {
                                     on b.game_id=c.game_id
                                     and b.prediction=c.final_result
                                     group by a.user_id
-                                    order by points desc;");
+                                    order by points desc, a.nickname asc;");
         $leaders = array();
         while ($row = pg_fetch_row($result)) {
             $leader = array(
