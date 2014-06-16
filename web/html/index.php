@@ -99,7 +99,7 @@ date_default_timezone_set('America/Los_Angeles');
 
                                         <div class="col-md-12 divider"><hr></div>
 
-                                        <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                        <div class="col-md-12" style="text-align: center; display: block;">
                                             <?php
                                             if ($game["time"] >= time()) {
                                                 ?>
@@ -116,7 +116,7 @@ date_default_timezone_set('America/Los_Angeles');
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                        <div class="col-md-12" style="text-align: center; display: block;">
                                             <?php
                                             if ($game["time"] >= time()) {
                                                 ?>
@@ -132,7 +132,7 @@ date_default_timezone_set('America/Los_Angeles');
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                        <div class="col-md-12" style="text-align: center; display: block;">
                                             <?php
                                             if ($game["time"] >= time()) {
                                                 ?>
@@ -281,36 +281,25 @@ date_default_timezone_set('America/Los_Angeles');
             <script type="text/javascript">
                 $(document).ready(function(){
                     $(".selection").click(function(){
-                        <?php
-                        if ($game["time"] >= time()) {
-                        ?>
-                            var url = $(this).find("custom").attr("href");
-                            var game = $(this).find("custom").attr("param_game");
-                            var user = $(this).find("custom").attr("param_user");
-                            var prediction = $(this).find("custom").attr("param_choice");
-                            var div = $(this);
-                            $.ajax({
-                                type: "GET",
-                                url: url,
-                                data: {"game": game, "user_id": user, "radio-choice-h-2": prediction},
-                                success: function(data){
-                                    var obj = $.parseJSON(data);
-                                    console.log("Successfully posted. New selection - " + obj["game"] + "\n" + obj["selection"]);
-                                    // refresh the selection
-                                    var cur = $("#current_selection_" + game);
-                                    cur.attr('src', obj["selection"]);
-                                },
-                                error: function(jqXHR, exception){
-                                    console.log("Something went wrong");
-                                }
-                            });
-                        <?php
-                        } else {
-                        ?>
-                            alert("Betting for this game is now closed..");
-                        <?php
-                        }
-                        ?>
+                        var url = $(this).find("custom").attr("href");
+                        var game = $(this).find("custom").attr("param_game");
+                        var user = $(this).find("custom").attr("param_user");
+                        var prediction = $(this).find("custom").attr("param_choice");
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            data: {"game": game, "user_id": user, "radio-choice-h-2": prediction},
+                            success: function(data){
+                                var obj = $.parseJSON(data);
+                                console.log("Successfully posted. New selection - " + obj["game"] + "\n" + obj["selection"]);
+                                // refresh the selection
+                                var cur = $("#current_selection_" + game);
+                                cur.attr('src', obj["selection"]);
+                            },
+                            error: function(jqXHR, exception){
+                                console.log("Something went wrong");
+                            }
+                        });
                         return false;
                     });
 
