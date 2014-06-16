@@ -78,12 +78,13 @@ date_default_timezone_set('America/Los_Angeles');
                                         ?>
 
                                         <span>Your Pick</span>
-                                        <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
+                                        <img class="current_selection" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
 
                                         <?php
                                         } else {
                                         ?>
                                             Please make a selection below
+                                            <img class="current_selection" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="" /><br/>
                                         <?php
                                         }
                                         ?>
@@ -95,7 +96,7 @@ date_default_timezone_set('America/Los_Angeles');
                                         <?php
                                         if ($game["time"] >= time()) {
                                             ?>
-                                            <a href="/pick.php?game=<?php echo $game["game_id"] ?>&user_id=<?php echo $uid?>&radio-choice-h-2=1"></a>
+                                            <custom href="/pick.php" param_game="<?php echo $game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="1"></custom>
                                         <?php
                                         } else {
 
@@ -112,7 +113,7 @@ date_default_timezone_set('America/Los_Angeles');
                                         <?php
                                         if ($game["time"] >= time()) {
                                             ?>
-                                            <a href="/pick.php?game=<?php echo $game["game_id"] ?>&user_id=<?php echo $uid?>&radio-choice-h-2=2"></a>
+                                            <custom href="/pick.php" param_game="<?php echo $game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="2"></custom>
                                         <?php
                                         } else {
 
@@ -128,7 +129,7 @@ date_default_timezone_set('America/Los_Angeles');
                                         <?php
                                         if ($game["time"] >= time()) {
                                             ?>
-                                            <a href="/pick.php?game=<?php echo $game["game_id"] ?>&user_id=<?php echo $uid?>&radio-choice-h-2=X"></a>
+                                            <custom href="/pick.php" param_game="<?php echo $game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="X"></custom>
                                         <?php
                                         } else {
 
@@ -138,8 +139,6 @@ date_default_timezone_set('America/Los_Angeles');
                                             <span>Draw: <strong><?php echo $game["draw_points"] ?> points</strong> </span>
                                             <img style="max-width: 100px;display: block; margin: auto;" width="90%" height="60" src="img/neutral.jpeg" /><br/>
                                         </div>
-
-
 
                                     </div>
                                 </div>
@@ -166,7 +165,24 @@ date_default_timezone_set('America/Los_Angeles');
                         <?php
                         if ($game["time"] >= time()) {
                         ?>
-                            window.location=$(this).find("a").attr("href");
+                            var url = $(this).find("custom").attr("href");
+                            var game = $(this).find("custom").attr("param_game");
+                            var user = $(this).find("custom").attr("param_user");
+                            var prediction = $(this).find("custom").attr("param_choice");
+                            $.ajax({
+                                type: "GET",
+                                url: url,
+                                data: {"game": game, "user_id": user, "radio-choice-h-2": prediction},
+                                success: function(data){
+                                    var obj = $.parseJSON(data);
+                                    console.log("Successfully posted. New selection - " + obj["game"] + "\n" + obj["selection"]);
+                                    // refresh the selection
+                                    $(".current_selection").attr('src', obj["selection"]);
+                                },
+                                error: function(jqXHR, exception){
+                                    console.log("Something went wrong");
+                                }
+                            });
                         <?php
                         } else {
                         ?>

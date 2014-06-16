@@ -22,8 +22,20 @@ if (isset($_GET['radio-choice-h-2'])) {
     if ($game["time"] < time()) {
         echo "Betting for this game is now closed";
     } else {
+        $data = json_decode(file_get_contents('php://input'), true);
+        print_r($data);
         $userTools->setAPick($_GET["user_id"], $_GET["game"], $_GET['radio-choice-h-2']);
-        header("Location: index.php");
+        $flag = "img/neutral.jpeg";
+        if ($_GET["radio-choice-h-2"] == '1') {
+            $flag = $flags[$game["team1_id"]];
+        } else if ($_GET["radio-choice-h-2"] == '2'){
+            $flag = $flags[$game["team2_id"]];
+        }
+        $arr = array("selection"=> $flag, "game"=>$_GET["game"]);
+
+        echo json_encode($arr);
+        //echo $flag;
+        //header("Location: index.php");
     }
 }
 
@@ -44,113 +56,3 @@ if(isset($userPick) && !(is_array($userPick) && sizeof($userPick) == 0)) {
 
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-    <script src="js/jquery.jplayer.min.js"></script>
-
-    <?php require_once('../include/header.php') ?>
-</head>
-<body>
-    <div class="ui-grid-a" style="width: 100%;">
-        <form id="aform" action="pick.php" method="get">
-            <input id="game" name="game" type="hidden" value="<?php echo $game["game_id"] ?>">
-            <input id="user_id" name="user_id" type="hidden" value="<?php echo $uid ?>">
-                <div class="ui-block-a" style="width: 100%;">
-                    <div data-role="header" style="height:80px; background: #00d170 url('img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
-                        <div style="display: block; padding-top:30px; padding-right:15px; vertical-align: middle;float: right;">
-                            <a href="logout.php">Logout</a>
-                        </div>
-                    </div>
-
-                    <div style="position:relative; text-align: center;">
-                        <h4>Pick a Result</h4>
-                    </div>
-                </div>
-
-                <div class="ui-block-a">
-                    <fieldset data-role="controlgroup" data-type="horizontal">
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="1" <?php echo $is_selection_1 ?> <?php if ($game["time"] < time()) {echo "disabled";} ?>>    <!-- checked="checked" -->
-                        <label for="radio-choice-h-2a">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <img width="100" height="60" src="<?php echo $flags[$game["team1_id"]]; ?>" />
-                                        <h3><?php echo $game["team1"]; ?></h3>
-                                    </td>
-                                    <td><?php echo $game["team1_points"] ?> pts</td>
-                                </tr>
-                            </table>
-                        </label>
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="2" <?php echo $is_selection_2 ?> <?php if ($game["time"] < time()) {echo "disabled";} ?>>
-                        <label for="radio-choice-h-2b">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <img width="100" height="60" src="<?php echo $flags[$game["team2_id"]]; ?>" />
-                                        <h3><?php echo $game["team2"]; ?></h3>
-                                    </td>
-                                    <td><?php echo $game["team2_points"] ?> pts</td>
-                                </tr>
-                            </table>
-                        </label>
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="X" <?php echo $is_selection_3 ?> <?php if ($game["time"] < time()) {echo "disabled";} ?>>
-                        <label for="radio-choice-h-2c">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <img width="100" height="60" src="img/neutral.jpeg" />
-                                        <h3>Draw</h3>
-                                    </td>
-                                    <td><?php echo $game["draw_points"] ?> pts</td>
-                                </tr>
-                            </table>
-                        </label>
-                    </fieldset>
-                 </div>
-                <div class="ui-block-a">
-                    &nbsp;
-                </div>
-                <div class="ui-block-a">
-                    <input id="submit" type="submit" value="Done" style="margin: 0 auto;display: block;width: 100%;" <?php if ($game["time"] < time()) {echo "disabled";} ?>/>
-                </div>
-        </form>
-    </div>
-    <div id="jquery_jplayer_1"></div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#submit").click(function(ev) {
-            //ev.preventDefault();
-            var items = ["1.mp3", "2.mp3", "3.mp3"];
-
-            $('#jquery_jplayer_1').jPlayer({
-                ready: function() {
-                $(this).jPlayer('setMedia', {
-                    mp3: 'audio/'+items[Math.floor(Math.random()*items.length)]
-                }).jPlayer('play');
-                var click = document.ontouchstart === undefined ? 'click' : 'touchstart';
-                var kickoff = function () {
-                $('#jquery_jplayer_1').jPlayer('play');
-                    document.documentElement.removeEventListener(click, kickoff, true);
-                };
-                document.documentElement.addEventListener(click, kickoff, true);
-                },
-                loop: false,
-                swfPath: 'js'
-            });
-        });
-    });
-</script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-51832818-1', '54.243.222.155');
-        ga('send', 'pageview');
-
-    </script>
-</body>
-</html>
