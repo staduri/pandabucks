@@ -9,3 +9,4 @@ if (isset($_GET['email'])) {
 } else {
     echo json_encode(array("result"=>"missing_param"));
 }
+?>
