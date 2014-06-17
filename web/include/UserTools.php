@@ -307,5 +307,16 @@ class UserTools {
     public function unsubscribe($email) {
         $result = $this->db->insert(array("email"=>$email), "email_optout");
     }
+
+    public function getReminders($games) {
+        $sql = "select distinct aa.email from users aa join (select a.user_id as user_id_1, c.user_id as user_id_2 from users a left outer join (select a.user_id, b.id from users a left join users_betting b on a.user_id=b.user_id where game_id in (" . implode(",", $games) . ")) c on a.user_id=c.user_id) bb on aa.user_id=bb.user_id_1 left join email_optout ee on aa.email=ee.email where bb.user_id_2 is null and ee.email is null;";
+
+        $result = $this->db->query($sql);
+        $users = array();
+        while ($row = pg_fetch_row($result)) {
+            array_push($users, $row[0]);
+        }
+        return $users;
+    }
 }
 ?>
