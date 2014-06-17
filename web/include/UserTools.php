@@ -124,6 +124,40 @@ class UserTools {
         return $games;
     }
 
+    public function getAllGamesByDate($start_time, $end_time) {
+        $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage,
+                                           d.team1_points, d.team2_points, d.draw_points
+
+                                    from fixtures a
+                                    join teams b on a.team1=b.team_id
+                                    join teams c on a.team2=c.team_id
+                                    join odds d on a.game_id=d.game_id
+
+                                    where a.time > ".$start_time
+                                    ."and a.time < ".$end_time
+                                    ."order by a.game_id
+
+                                    ");
+        $games = array();
+        while ($row = pg_fetch_row($result)) {
+            $game = array(
+                "game_id" => $row[0],
+                "time" => $row[1],
+                "team1" => $row[2],
+                "team1_id" => $row[3],
+                "team2" => $row[4],
+                "team2_id" => $row[5],
+                "stage" => $row[6],
+                "team1_points" => $row[7],
+                "team2_points" => $row[8],
+                "draw_points" => $row[9]
+            );
+
+            array_push($games, $game);
+        }
+        return $games;
+    }
+
     public function getPredictions($uid) {
         $result = $this->db->query("select a.game_id, a.prediction
                                     from users_betting a
