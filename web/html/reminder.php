@@ -19,8 +19,8 @@ $headers .= "Reply-To: sid@pandacup.us" . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-$body = file_get_contents("reminder.html");
-echo $body;
+$message = file_get_contents("reminder.html");
+echo $message;
 mail($to, $subject, $message, $headers);
 
 ?>
