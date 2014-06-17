@@ -269,5 +269,9 @@ class UserTools {
             $this->db->insert($data, "users_betting");
         }
     }
+
+    public function unsubscribe($email) {
+        $result = $this->db->insert(array("email"=>$email), "email_optout");
+    }
 }
 ?>
