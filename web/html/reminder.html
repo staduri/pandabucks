@@ -1,18 +1,61 @@
 <html>
 <head>
-    <?php require_once('../include/header.php') ?>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style type="text/css">
+        h2 {
+            width: 100%; font-size: 30px; line-height: 170%; margin: 0px; text-align: center;
+        }
+
+        p {
+            color:#515151;font-family:Arial;font-size:16px;line-height:150%;margin:0;text-align:left;padding: 15px;
+        }
+
+        table {
+            width: 100%; color:#515151;font-family:Arial;font-size:30px;line-height:170%;margin: 0px; text-align:center;
+        }
+
+        #select {
+            background-color:#00d170;border:1px solid #2d501e;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;font-weight:bold;line-height:40px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;
+        }
+    </style>
 </head>
-<body>
-    <div>
-        <div data-role="header" style="height:80px; background: #00d170 url('img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
+<body style="background: #dddddd">
+    <div style="width: 80%; margin: auto; background-color: white;">
+        <div style="height:80px; background: #00d170 url('http://pandacup.us/img/full-logo.png'); background-position:center; background-size:75px; background-repeat:no-repeat;">
         </div>
-        <p>Hello! Looks like you have not selected picks for tomorrow's games</p>
-        <table class="table">
+        <h2>
+            <span style="color:#515151;font-weight:bold;font-family:Arial;">Make your picks!</span></h2>
+        <p>
+            It looks like you have not made your picks for one of more upcoming games. Make your selection now, we don&#39;t want anyone losing out on their points!&nbsp;</p>
+
+        <table align="center">
             #GAME_LIST
         </table>
-        <p>Remember, you can go ahead and select all your picks right away and you won't receive anymore reminders.</p>
-        <p>If you would like to stop receiving these reminders, click <a href="http://pandacup.us/unsubscribe.php?email=#EMAIL">here</a></p>
+
+        <div style="width: 200px; margin: auto; display:block;">
+            <a id="select" href="http://pandacup.us">Start Picking!</a>
+        </div>
+
+        <p>
+            Remember, you can go ahead and select all your picks right away and you won't receive anymore reminders.</p>
+
+        <p>
+            Cheers,
+
+        </p>
+        <p>
+            - Team PandaCup.
+        </p>
+
+
+
+        </p>
+        <footer style="color: white; text-align: center; background: #00d170; padding: 10px;">&copy; 2014 Pandathletico Soccer PERG
+            <p style="color:#515151;font-family:Arial;font-size:12px;line-height:170%;margin:0;text-align: center;padding: 5px">
+                To unsubscribe please click <a href="http://pandacup.us/unsubscribe.php?email=#EMAIL" style="text-decoration:none;"><span style="text-decoration:underline;color:#0F7D27">here</span></a></p>
+
+            <p style="color:#515151;font-family:Arial;font-size:12px;line-height:170%;margin:0;text-align: center; padding: 5px">
+                <a href="mailto:sid@pandora.com,cirwin@pandora.com?Subject=We%20L.O.V.E%20your%20app" target="_top">Contact us</a>
+        </footer>
     </div>
 
 

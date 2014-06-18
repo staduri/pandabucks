@@ -13,7 +13,7 @@ $gameList = "";
 $game_ids = array();
 foreach ($games as $game) {
     $gameList .= "<tr>";
-    $gameList .= "<td>" . $game["team1"] . " vs " . $game["team2"] . "</td>";
+    $gameList .= "<td>Game - " . $game["game_id"] . ": " . $game["team1"] . " vs " . $game["team2"] . "</td>";
     $gameList .= "</tr>";
 
     array_push($game_ids, $game["game_id"]);
