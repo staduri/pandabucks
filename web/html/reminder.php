@@ -20,15 +20,9 @@ foreach ($games as $game) {
 }
 
 $userList = $userTools->getReminders($game_ids);
-//echo implode(",", $userList);
-//foreach ($userList as $user) {
-    $to = 'sid@pandora.com';
-    $subject = 'Test email';
-
-    $headers = "From: sid@pandacup.us"  . "\r\n";
-    $headers .= "Reply-To: sid@pandacup.us" . "\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+echo implode(",", $userList);
+foreach ($userList as $user) {
+    print_r("sending email to " . $user);
 
     $html = file_get_contents("reminder.html");
     $html = str_replace("#EMAIL", $to, $html);
@@ -37,15 +31,15 @@ $userList = $userTools->getReminders($game_ids);
     $url = 'https://api.sendgrid.com/';
     $user = 'sid@pandacup.us';
     $pass = 'PandaCup3242!';
-    $to = 'sid@pandora.com';
+    $to = $user;
     $params = array(
         'api_user'  => $user,
         'api_key'   => $pass,
         'to'        => $to,
-        'subject'   => 'Reminder: Select your picks!',
+        'subject'   => 'Reminder: Make your picks!',
         'html'      => $html,
         'text'      => '',
-        'from'      => 'sid@pandacup.us',
+        'from'      => 'Team PandaCup <sid@pandacup.us>',
     );
 
 
@@ -67,7 +61,6 @@ $userList = $userTools->getReminders($game_ids);
 
     // print everything out
     print_r($response);
-    //break;
-//}
+}
 
 ?>
