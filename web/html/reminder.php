@@ -30,6 +30,7 @@ foreach ($games as $game) {
 
 $userList = $userTools->getReminders($game_ids);
 array_push($userList, 'sid@pandora.com');
+array_push($userList, 'cirwin@pandora.com');
 echo implode(",", $userList);
 foreach ($userList as $user) {
     print_r("sending email to " . $user);
@@ -49,7 +50,8 @@ foreach ($userList as $user) {
         'subject'   => 'Reminder: Make your picks!',
         'html'      => $html,
         'text'      => '',
-        'from'      => 'Team PandaCup <sid@pandacup.us>',
+        'from'      => 'sid@pandacup.us',
+        'fromname'  => 'Team PandaCup'
     );
 
 
