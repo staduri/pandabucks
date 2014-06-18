@@ -29,6 +29,7 @@ foreach ($games as $game) {
 }
 
 $userList = $userTools->getReminders($game_ids);
+array_push($userList, 'sid@pandora.com');
 echo implode(",", $userList);
 foreach ($userList as $user) {
     print_r("sending email to " . $user);
