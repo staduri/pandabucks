@@ -2,6 +2,15 @@
 
 date_default_timezone_set('America/Los_Angeles');
 
+if (!isset($_GET['access_code'])) {
+    die("error. no access code specified");
+}
+
+if ('abcd1234' != $_GET['access_code']) {
+    die("error. access code incorrect.");
+}
+
+
 require_once('../include/UserTools.php');
 $userTools = new UserTools();
 
