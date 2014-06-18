@@ -32,8 +32,8 @@ $userList = $userTools->getReminders($game_ids);
 array_push($userList, 'sid@pandora.com');
 array_push($userList, 'cirwin@pandora.com');
 echo implode(",", $userList);
-foreach ($userList as $user) {
-    print_r("sending email to " . $user);
+foreach ($userList as $email) {
+    print_r("sending email to " . $email);
 
     $html = file_get_contents("reminder.html");
     $html = str_replace("#EMAIL", $to, $html);
@@ -42,7 +42,7 @@ foreach ($userList as $user) {
     $url = 'https://api.sendgrid.com/';
     $user = 'sid@pandacup.us';
     $pass = 'PandaCup3242!';
-    $to = $user;
+    $to = $email;
     $params = array(
         'api_user'  => $user,
         'api_key'   => $pass,
