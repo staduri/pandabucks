@@ -238,12 +238,14 @@ class UserTools {
     }
 
     public function getLeaderboard() {
-        $result = $this->db->query("select
+        $result = $this->db->query("select aa.*, rank() over (order by points desc) as rank from (
+                                    select
                                     a.email,
                                     a.nickname,
                                     sum(case when c.points is null then 0 else c.points end) points,
                                     sum(case when c.points is null then 0 else 1 end) as correct_guesses,
                                     sum(case when c.points is null then 1 else 0 end) as incorrect_guesses
+
                                     from users a
                                     left outer join users_betting b on a.user_id=b.user_id
                                     left outer join
@@ -266,7 +268,10 @@ class UserTools {
                                     on b.game_id=c.game_id
                                     and b.prediction=c.final_result
                                     group by a.user_id
-                                    order by points desc, a.nickname asc;");
+                                    order by points desc, a.nickname asc
+                                    ) aa
+
+                                    ;");
         $leaders = array();
         while ($row = pg_fetch_row($result)) {
             $leader = array(
@@ -274,7 +279,8 @@ class UserTools {
                 "nickname" => $row[1],
                 "points" => $row[2],
                 "correct_guesses" => $row[3],
-                "incorrect_guesses" => $row[4]
+                "incorrect_guesses" => $row[4],
+                "rank" => $row[5]
             );
 
             array_push($leaders, $leader);

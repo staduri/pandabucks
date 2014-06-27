@@ -4,6 +4,7 @@
 
     $userTools = new UserTools();
     $uidt = $userTools->checkSession();
+    $uid = $uidt["email"];
 
     $leaderboard = $userTools->getLeaderboard();
 
@@ -27,8 +28,15 @@
             cursor: pointer;
             background-image: url(img/asc_desc.png);
             background-repeat: no-repeat;
-            background-size: 20px;
-            background-position: right;
+            background-size: 10px;
+            background-position: left;
+            text-align: center;
+        }
+
+        #your_rank td {
+            border: none;
+            background-color: ;
+            font-style: oblique;
         }
     </style>
 </head>
@@ -53,6 +61,34 @@
         </div>
     </div>
 
+    <div class="col-md-6 col-md-offset-3">
+        <table id="your_rank" class="table table-responsive table-border"">
+            <?php
+            foreach ($leaderboard as $row) {
+                if ($row['user_id'] == $uid) {
+                    echo '<tr>';
+                    echo '<td><img height="150px" src="img/'.$row["user_id"].'.jpg"</td>';
+                    echo '<td>
+                            <p>Nickname</p>
+                            <p>Rank</p>
+                            <p>Points</p>
+                            <p># Correct</p>
+                            <p># Incorrect</p>
+                        </td>' ;
+                    echo '<td>';
+                        echo '<p>' . $row['nickname'] . '</p>';
+                        echo '<p>' . $row['rank'] . '</p>';
+                        echo '<p>' . $row['points'] . '</p>';
+                        echo '<p>' . $row['correct_guesses'] . '</p>';
+                        echo '<p>' . $row['incorrect_guesses'] . '</p>';
+                    echo '</td>';
+                    echo '</tr>';
+                }
+            }
+            ?>
+        </table>
+    </div>
+
     <div class="col-md-12" style="width: 100%;">
         <table id="leaderboard" class="table tablesorter">
             <thead>
@@ -68,19 +104,16 @@
             </thead>
             <tbody>
                 <?php
-                    $rank_num = 1;
                     foreach ($leaderboard as $row) {
                         echo '<tr>';
                             echo '<td><img height="150px" src="img/'.$row["user_id"].'.jpg"</td>';
-                            echo '<td>' . $rank_num . '</td>';
+                            echo '<td>' . $row['rank'] . '</td>';
                             echo '<td>' . $row['nickname'] . '</td>';
                             echo '<td>' . $row['user_id'] . '</td>';
                             echo '<td>' . number_format($row['points']) . '</td>';
                             echo '<td>' . $row['correct_guesses'] . '</td>';
                             echo '<td>' . $row['incorrect_guesses'] . '</td>';
                         echo '</tr>';
-
-                        $rank_num += 1;
                     }
                 ?>
             </tbody>
