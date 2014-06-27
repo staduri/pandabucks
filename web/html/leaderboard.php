@@ -69,14 +69,12 @@
                     echo '<tr>';
                     echo '<td><img height="150px" src="img/'.$row["user_id"].'.jpg"</td>';
                     echo '<td>
-                            <p>Nickname</p>
                             <p>Rank</p>
                             <p>Points</p>
                             <p># Correct</p>
                             <p># Incorrect</p>
                         </td>' ;
                     echo '<td>';
-                        echo '<p>' . $row['nickname'] . '</p>';
                         echo '<p>' . $row['rank'] . '</p>';
                         echo '<p>' . $row['points'] . '</p>';
                         echo '<p>' . $row['correct_guesses'] . '</p>';
