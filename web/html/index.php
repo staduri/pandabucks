@@ -62,6 +62,7 @@ date_default_timezone_set('America/Los_Angeles');
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div>
+                                    <div class="col-md-12 divider"><hr></div>
                                     <?php foreach ($games as $game) {
                                         if ($game["time"] >= time()) {
                                             continue;
@@ -189,6 +190,7 @@ date_default_timezone_set('America/Los_Angeles');
                                         ?>
 
                                         <div>
+                                            <div class="col-md-12 divider"><hr></div>
                                             <div class="col-md-12">
                                                 <div class="col-md-2" style="text-align: center; vertical-align:middle;">
                                     <span style="font-size: small;font-family: Arial; color: black;">
