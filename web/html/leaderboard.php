@@ -72,13 +72,11 @@
                             <p>Rank</p>
                             <p>Points</p>
                             <p># Correct</p>
-                            <p># Incorrect</p>
                         </td>' ;
                     echo '<td>';
                         echo '<p>' . $row['rank'] . '</p>';
                         echo '<p>' . $row['points'] . '</p>';
                         echo '<p>' . $row['correct_guesses'] . '</p>';
-                        echo '<p>' . $row['incorrect_guesses'] . '</p>';
                     echo '</td>';
                     echo '</tr>';
                 }
@@ -97,7 +95,6 @@
                     <th>Email</th>
                     <th class="sortable">Points</th>
                     <th class="sortable"># Correct</th>
-                    <th class="sortable"># Incorrect</th>
                 </tr>
             </thead>
             <tbody>
@@ -110,7 +107,6 @@
                             echo '<td>' . $row['user_id'] . '</td>';
                             echo '<td>' . number_format($row['points']) . '</td>';
                             echo '<td>' . $row['correct_guesses'] . '</td>';
-                            echo '<td>' . $row['incorrect_guesses'] . '</td>';
                         echo '</tr>';
                     }
                 ?>

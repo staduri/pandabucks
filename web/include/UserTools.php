@@ -16,6 +16,7 @@ class UserTools {
     //If it is successful, set the session variables
     //and store the user object within.
     public function login($username, $password) {
+        session_set_cookie_params(86400000);
         session_start();
 
         $hashedPassword = md5($password);
@@ -32,6 +33,7 @@ class UserTools {
     }
 
     public function checkSession() {
+        session_set_cookie_params(86400000);
         session_start();
 
 
