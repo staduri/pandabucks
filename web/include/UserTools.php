@@ -104,6 +104,7 @@ class UserTools {
                                     join teams c on a.team2=c.team_id
                                     join odds d on a.game_id=d.game_id
 
+                                    where a.game_id<>64
                                     order by a.game_id
                                     ");
         $games = array();
@@ -124,6 +125,39 @@ class UserTools {
             array_push($games, $game);
         }
         return $games;
+    }
+
+    public function getFinalGame() {
+        $result = $this->db->query("select a.game_id, a.time, b.name, b.team_id, c.name, c.team_id, a.tournament_stage,
+                                           d.team1_points, d.team2_points, d.draw_points
+
+                                    from fixtures a
+                                    join teams b on a.team1=b.team_id
+                                    join teams c on a.team2=c.team_id
+                                    join odds d on a.game_id=d.game_id
+
+                                    where a.game_id=64
+
+                                    order by a.game_id
+                                    ");
+        $games = array();
+        while ($row = pg_fetch_row($result)) {
+            $game = array(
+                "game_id" => $row[0],
+                "time" => $row[1],
+                "team1" => $row[2],
+                "team1_id" => $row[3],
+                "team2" => $row[4],
+                "team2_id" => $row[5],
+                "stage" => $row[6],
+                "team1_points" => $row[7],
+                "team2_points" => $row[8],
+                "draw_points" => $row[9]
+            );
+
+            array_push($games, $game);
+        }
+        return $games[0];
     }
 
     public function getAllGamesByDate($start_time, $end_time) {
@@ -170,6 +204,31 @@ class UserTools {
         $predictions = array();
         while ($row = pg_fetch_row($result)) {
             $predictions[$row[0]] = $row[1];
+        }
+        return $predictions;
+    }
+
+    public function getFinalGamePrediction($uid) {
+        $result = $this->db->query("select game_id, team1_score, team2_score
+                                    from scoreline_betting a
+                                    where game_id=64 and a.user_id="
+            .$uid
+        );
+
+        $predictions = array(
+            "game_id" => 64,
+            "team1_score" => "",
+            "team2_score" => ""
+        );
+
+        while ($row = pg_fetch_row($result)) {
+
+            $predictions = array(
+                "game_id" => $row[0],
+                "team1_score" => $row[1],
+                "team2_score" => $row[2]
+            );
+            break;
         }
         return $predictions;
     }
@@ -329,6 +388,23 @@ class UserTools {
             array_push($users, $row[0]);
         }
         return $users;
+    }
+
+    public function setScorelinePrediction($game, $user, $team1_score, $team2_score) {
+        $check = $this->db->query("select user_id,game_id,team1_score,team2_score from scoreline_betting where user_id=".$user." and game_id=".$game);
+        $data = array(
+            "user_id" => $user,
+            "game_id" => $game,
+            "team1_score" => $team1_score,
+            "team2_score" => $team2_score
+        );
+
+        if(pg_num_rows($check) >= 1) {
+            print("here");
+            $this->db->update($data, "scoreline_betting", "game_id=".$game." and user_id=".$user);
+        } else {
+            $this->db->insert($data, "scoreline_betting");
+        }
     }
 }
 ?>

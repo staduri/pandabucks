@@ -12,7 +12,10 @@ $uid = $uidt["user_id"];
 
 $flags = $userTools->getAllFlags();
 $games = $userTools->getAllGames();
+$final_game = $userTools->getFinalGame();
 $predictions = $userTools->getPredictions($uid);
+$final_game_prediction = $userTools->getFinalGamePrediction($uid);
+echo $final_game_prediction["team1_score"];
 
 date_default_timezone_set('America/Los_Angeles');
 
@@ -293,6 +296,110 @@ date_default_timezone_set('America/Los_Angeles');
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title ">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    <h3>World Cup Final</h3>
+                                </a>
+                            </h4>
+                        </div>
+
+                        <div id="collapseThree" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-2" style="text-align: center; vertical-align:middle;">
+                                    <span style="font-size: small;font-family: Arial; color: black;">
+                                        <?php echo date("j F", $final_game["time"]) ?>
+                                    </span>
+                                            <br>
+                                    <span style="font-size: x-small;font-family: Arial; color: black;">
+                                        <?php echo date("H:i", $final_game["time"]) ?> PST
+                                    </span>
+                                            <h3>
+                                                <?php echo $final_game["team1"] ?> vs <?php echo $final_game["team2"] ?>
+                                            </h3>
+                                        </div>
+                                        <div class="col-md-10">
+
+                                            <div class="col-md-12" style="text-align: center;">
+                                                <?php
+
+                                                if (array_key_exists($final_game["game_id"], $predictions)) {
+                                                    $prediction = $predictions[$final_game["game_id"]];
+                                                    $flag_url = "";
+                                                    if ($prediction == "1") {
+                                                        $flag_url = $flags[$final_game["team1_id"]];
+                                                    } else if ($prediction == "2") {
+                                                        $flag_url = $flags[$final_game["team2_id"]];
+                                                    } else {
+                                                        $flag_url = "img/neutral.jpeg";
+                                                    }
+                                                    ?>
+
+                                                    <span>Your Pick</span>
+                                                    <img id="current_selection_<?php echo $final_game["game_id"] ?>" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flag_url ?>" /><br/>
+
+                                                <?php
+                                                } else {
+                                                    ?>
+                                                    Please make a selection below
+                                                    <img id="current_selection_<?php echo $final_game["game_id"] ?>" style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="" /><br/>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+
+                                            <div class="col-md-12 divider"><hr></div>
+
+                                            <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                                <?php
+                                                if ($final_game["time"] >= time()) {
+                                                    ?>
+                                                    <custom href="/pick.php" param_game="<?php echo $final_game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="1"></custom>
+                                                <?php
+                                                } else {
+
+                                                }
+                                                ?>
+
+                                                <div class="col-md-12">
+                                                    <span><?php echo $final_game["team1"]; ?>: <strong><?php echo $final_game["team1_points"] ?> points</strong> </span>
+                                                    <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$final_game["team1_id"]]; ?>" /><br/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 selection" style="text-align: center; display: block;">
+                                                <?php
+                                                if ($final_game["time"] >= time()) {
+                                                    ?>
+                                                    <custom href="/pick.php" param_game="<?php echo $final_game["game_id"] ?>" param_user="<?php echo $uid?>" param_choice="2"></custom>
+                                                <?php
+                                                } else {
+
+                                                }
+                                                ?>
+                                                <div class="col-md-12">
+                                                    <span><?php echo $final_game["team2"]; ?>: <strong><?php echo $final_game["team2_points"] ?> points</strong> </span>
+                                                    <img style="max-width: 100px; display: block; margin: auto;" width="90%" height="60" src="<?php echo $flags[$final_game["team2_id"]]; ?>" /><br/>
+                                                </div>
+                                            </div>
+
+                                            <!--- -->
+                                            <div class="col-md-12" style="text-align: center; display: block;">
+                                                Predict the scoreline at 90 minutes to double your points for this game
+                                                <br>
+                                                Germany: <input id="team1_score" type="number" value="<?php if ($final_game_prediction["team1_score"]) echo $final_game_prediction["team1_score"] ?>"> </input> : Argentina <input id="team2_score" type="number" value="<?php if($final_game_prediction["team2_score"]) echo $final_game_prediction["team2_score"] ?>"> </input> <a class="btn btn-link scoreline-prediction" href="#" param_user="<?php echo $uid?>">Save</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <script>
@@ -338,6 +445,26 @@ date_default_timezone_set('America/Los_Angeles');
                             $(this).css({"background": ""});
                             $(this).css({"cursor": ""});
                     });
+
+                    $(".scoreline-prediction").click(function(ev) {
+                        var url = '/saveScorelinePrediction.php';
+                        var user = $(this).attr("param_user");
+                        var team1_score = $("#team1_score").val();
+                        var team2_score = $("#team2_score").val();
+
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            data: {"game_id": 64, "user_id": user, "team1_score": team1_score, "team2_score": team2_score},
+                            success: function(data){
+                                console.log("Posted selection successfully");
+                            },
+                            error: function(jqXHR, exception){
+                                console.log("Something went wrong");
+                            }
+                        });
+                    });
+
                 });
             </script>
     </body>
