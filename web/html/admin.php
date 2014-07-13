@@ -49,7 +49,7 @@ if($error != "") {
             <datalist id="games">
                 <?php
                 $userTools = new UserTools();
-                $games = $userTools->getAllGames();
+                $games = $userTools->getAllGamesForAdmin();
                 foreach ($games as $game) {
                     echo("<option value='".$game["game_id"]."'>".$game["team1"]." vs ". $game["team2"]. " - ". $game["stage"]
                         ."</option>\n");
