@@ -12,13 +12,17 @@ require_once '../include/UserTools.php';
 if (isset($_POST['action'])) {
     $team1 = $_POST['team1-score'];
     $team2 = $_POST['team2-score'];
+    $team90a = $_POST['team1-90-score'];
+    $team90b = $_POST['team2-90-score'];
     $selection = $_POST['game'];
 
     $userTools = new UserTools();
     $data = array(
         "game_id" => $selection,
         "score_team_a" => $team1,
-        "score_team_b" => $team2
+        "score_team_b" => $team2,
+        "score_team_a_90" => $team90a,
+        "score_team_b_90" => $team90b
     );
 
     $userTools->saveResult($data);
@@ -56,6 +60,8 @@ if($error != "") {
 
             Team1: <input type="number" name="team1-score" value="" />
             Team2: <input type="number" name="team2-score" value="" />
+            Team1 90 min score: <input type="number" name="team1-90-score" value="" />
+            Team2 90 min score: <input type="number" name="team2-90-score" value="" />
 
             <input type="hidden" value="submit-results" name="action" />
 
