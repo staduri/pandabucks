@@ -334,7 +334,13 @@ class UserTools {
                                     select
                                     a.email,
                                     a.nickname,
-                                    sum(case when c.points is null then 0 else c.points end) points,
+                                    sum(case when c.points is null then 0
+                                             when c.score_team_a_90=pred.team1_score
+                                               and c.score_team_b_90=pred.team2_score
+                                               and c.game_id=64
+                                             then 2*c.points
+                                             else c.points
+                                        end) points,
                                     sum(case when c.points is null then 0 else 1 end) as correct_guesses,
                                     sum(case when c.points is null then 1 else 0 end) as incorrect_guesses
 
@@ -353,15 +359,20 @@ class UserTools {
                                     when score_team_a > score_team_b then team1_points
                                     when score_team_b > score_team_a then team2_points
                                     when score_team_a = score_team_b then draw_points
-                                    end points
+                                    end points,
+                                    a.score_team_a_90,
+                                    a.score_team_b_90
                                     from results a
                                     join odds b on a.game_id=b.game_id
                                     ) c
                                     on b.game_id=c.game_id
-                                    and b.prediction=c.final_result
+                                      and b.prediction=c.final_result
+                                    left outer join scoreline_betting pred on (pred.game_id=c.game_id and pred.user_id=a.user_id)
+
                                     group by a.user_id
                                     order by points desc, a.nickname asc
                                     ) aa
+
 
                                     ;");
         $leaders = array();
